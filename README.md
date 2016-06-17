@@ -1,6 +1,7 @@
 # LoL-item-sets for Mac [![Downloads](https://img.shields.io/github/downloads/Ilshidur/LoL-item-sets-Mac/total.svg)](https://github.com/Ilshidur/LoL-item-sets-Mac/releases)
 
 Download and automatically install the lastest LoL item sets from the website : lol-item-sets-generator.org
+
 Windows version here : https://github.com/Ilshidur/LoL-item-sets
 
 ## Help !
