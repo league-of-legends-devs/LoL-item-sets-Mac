@@ -14,6 +14,7 @@ class ViewController: NSViewController {
     @IBOutlet var installedPatch: NSTextField!
     @IBOutlet var pathControl: NSPathControl!
     @IBOutlet var installSets: NSButton!
+    @IBOutlet var link_: NSTextField!
     
     private var currentVersion: Configuration.Version?
 
@@ -41,6 +42,15 @@ class ViewController: NSViewController {
                 }
             }
         }
+        
+        let attrStr = NSMutableAttributedString(string: "Go to the website")
+        attrStr.beginEditing()
+        attrStr.addAttribute(NSLinkAttributeName, value: NSURL(string: "https://lol-item-sets-generator.org/")!, range: NSMakeRange(0, 17))
+        attrStr.addAttribute(NSForegroundColorAttributeName, value: NSColor.blueColor(), range: NSMakeRange(0, 17))
+        attrStr.addAttribute(NSUnderlineStyleAttributeName, value: NSNumber(int: 1), range: NSMakeRange(0, 17))
+        attrStr.endEditing()
+        link_.attributedStringValue = attrStr
+        
     }
 
     override var representedObject: AnyObject? {
@@ -128,6 +138,7 @@ class ViewController: NSViewController {
                     })
                     Configuration.instance.installedVersion = self.currentVersion!
                     self.installedPatch.stringValue = "Installed Patch: \(Configuration.instance.installedVersion.toString())"
+                    self.installSets.enabled = false
                 } catch(let e) {
                     print("[installItemSets:96] \(e)") //TODO
                 }

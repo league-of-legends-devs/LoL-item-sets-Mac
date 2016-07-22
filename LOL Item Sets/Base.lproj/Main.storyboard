@@ -21,6 +21,12 @@
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Check for updates..." id="aGE-cj-MRv">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="checkForUpdates:" target="dMz-Qb-4Ob" id="D4X-XW-ZdY"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -100,6 +106,7 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LOL_Item_Sets" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="dMz-Qb-4Ob" customClass="SUUpdater"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
@@ -202,15 +209,82 @@
                                     <action selector="installItemSets:" target="XfG-lQ-9wD" id="AP3-yJ-92T"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ru2-O5-Ivg" customClass="LinkTextLabel" customModule="LOL_Item_Sets" customModuleProvider="target">
+                                <rect key="frame" x="93" y="20" width="88" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="84" id="1h7-Ag-SXK"/>
+                                    <constraint firstAttribute="height" constant="17" id="E5C-nC-IvJ"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Go to website" allowsEditingTextAttributes="YES" id="4KL-DD-lFK">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="URL" value="https://lol-item-sets-generator.org/"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZR6-RT-dyg" customClass="LinkTextLabel" customModule="LOL_Item_Sets" customModuleProvider="target">
+                                <rect key="frame" x="185" y="20" width="110" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="106" id="3ql-7z-JOR"/>
+                                    <constraint firstAttribute="height" constant="17" id="52M-Tg-gPz"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Github repository" id="tRb-ad-uoM">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="URL" value="https://github.com/Ilshidur/LoL-item-sets-Mac"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Muw-T9-cpX" customClass="LinkTextLabel" customModule="LOL_Item_Sets" customModuleProvider="target">
+                                <rect key="frame" x="299" y="20" width="70" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="OFn-00-PLB"/>
+                                    <constraint firstAttribute="width" constant="66" id="eFa-Rp-vLC"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Changelog" id="22v-pC-6NT">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="URL" value="https://github.com/Ilshidur/LoL-item-sets-Mac/blob/master/CHANGELOG.md"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YEl-Da-goN">
+                                <rect key="frame" x="383" y="3" width="96" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="92" id="5Rp-aY-UZR"/>
+                                    <constraint firstAttribute="height" constant="17" id="j4d-2w-1dU"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="by melchor629" id="m3u-k5-jub">
+                                    <font key="font" metaFont="systemLight" size="13"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="Muw-T9-cpX" firstAttribute="leading" secondItem="ZR6-RT-dyg" secondAttribute="trailing" constant="8" id="3BE-62-gjf"/>
                             <constraint firstAttribute="trailing" secondItem="zvT-Ns-jgB" secondAttribute="trailing" constant="20" id="3RK-aC-eDE"/>
+                            <constraint firstAttribute="bottom" secondItem="YEl-Da-goN" secondAttribute="bottom" constant="3" id="7GQ-kv-X3b"/>
                             <constraint firstItem="cI2-gQ-3Yg" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="8iK-ct-uTJ"/>
+                            <constraint firstAttribute="bottom" secondItem="ZR6-RT-dyg" secondAttribute="bottom" constant="20" id="BPd-sQ-JCd"/>
                             <constraint firstItem="zvT-Ns-jgB" firstAttribute="top" secondItem="rT6-tD-GwK" secondAttribute="bottom" constant="10" id="Esa-3B-v0e"/>
+                            <constraint firstAttribute="bottom" secondItem="ru2-O5-Ivg" secondAttribute="bottom" constant="20" id="KMg-sR-DT8"/>
                             <constraint firstItem="cI2-gQ-3Yg" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="TgY-LB-nEB"/>
+                            <constraint firstItem="Muw-T9-cpX" firstAttribute="leading" secondItem="ZR6-RT-dyg" secondAttribute="trailing" constant="8" id="To2-md-SKI"/>
+                            <constraint firstAttribute="trailing" secondItem="YEl-Da-goN" secondAttribute="trailing" constant="3" id="Uim-80-u7T"/>
                             <constraint firstItem="rT6-tD-GwK" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="-71" id="Wzz-xm-FMc"/>
                             <constraint firstItem="deS-a6-Avj" firstAttribute="top" secondItem="ogQ-3N-YsC" secondAttribute="bottom" constant="8" id="bFX-5z-1IY"/>
+                            <constraint firstItem="ZR6-RT-dyg" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="d2x-We-QnA"/>
+                            <constraint firstAttribute="bottom" secondItem="Muw-T9-cpX" secondAttribute="bottom" constant="20" id="dYn-fE-5cp"/>
                             <constraint firstItem="ogQ-3N-YsC" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="dmh-Hk-M0H"/>
+                            <constraint firstItem="ZR6-RT-dyg" firstAttribute="leading" secondItem="ru2-O5-Ivg" secondAttribute="trailing" constant="8" id="eSw-0t-ojL"/>
+                            <constraint firstItem="ZR6-RT-dyg" firstAttribute="leading" secondItem="ru2-O5-Ivg" secondAttribute="trailing" constant="8" id="hpN-aj-0Vi"/>
                             <constraint firstItem="deS-a6-Avj" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="66" id="kPD-k5-aEa"/>
                             <constraint firstItem="rT6-tD-GwK" firstAttribute="top" secondItem="ogQ-3N-YsC" secondAttribute="bottom" constant="8" id="lkE-Si-OLO"/>
                             <constraint firstItem="zvT-Ns-jgB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="wq9-Hj-Xrh"/>
@@ -221,6 +295,7 @@
                         <outlet property="currentPatch" destination="cI2-gQ-3Yg" id="95w-c4-hho"/>
                         <outlet property="installSets" destination="rT6-tD-GwK" id="aCh-zo-A9c"/>
                         <outlet property="installedPatch" destination="ogQ-3N-YsC" id="Yvo-hp-o9e"/>
+                        <outlet property="link_" destination="ru2-O5-Ivg" id="eSq-BL-RAz"/>
                         <outlet property="pathControl" destination="zvT-Ns-jgB" id="WEo-Bg-BTM"/>
                     </connections>
                 </viewController>

@@ -18,6 +18,8 @@
 		48102C521D4110A200D7998E /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48102C501D4110A200D7998E /* Zip.framework */; };
 		48102C541D4169FA00D7998E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 48102C4F1D4110A200D7998E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		48102C551D4169FA00D7998E /* Zip.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 48102C501D4110A200D7998E /* Zip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		48865FF71D422397000731FB /* LinkTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48865FF61D422397000731FB /* LinkTextLabel.swift */; };
+		48865FF91D4232C7000731FB /* sparkle.xml in Resources */ = {isa = PBXBuildFile; fileRef = 48865FF81D4232C7000731FB /* sparkle.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +49,8 @@
 		48102C4E1D410F6200D7998E /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		48102C4F1D4110A200D7998E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		48102C501D4110A200D7998E /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zip.framework; path = Carthage/Build/Mac/Zip.framework; sourceTree = "<group>"; };
+		48865FF61D422397000731FB /* LinkTextLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTextLabel.swift; sourceTree = "<group>"; };
+		48865FF81D4232C7000731FB /* sparkle.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sparkle.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,7 @@
 		48102C2D1D40DF3800D7998E = {
 			isa = PBXGroup;
 			children = (
+				48865FF81D4232C7000731FB /* sparkle.xml */,
 				48102C4E1D410F6200D7998E /* Cartfile */,
 				48102C4F1D4110A200D7998E /* Sparkle.framework */,
 				48102C501D4110A200D7998E /* Zip.framework */,
@@ -92,6 +97,7 @@
 				48102C481D40E14700D7998E /* Utilities.swift */,
 				48102C4A1D40EB0600D7998E /* WindowDelegate.swift */,
 				48102C4C1D41021600D7998E /* Configuration.swift */,
+				48865FF61D422397000731FB /* LinkTextLabel.swift */,
 			);
 			path = "LOL Item Sets";
 			sourceTree = "<group>";
@@ -156,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48102C3E1D40DF3800D7998E /* Assets.xcassets in Resources */,
+				48865FF91D4232C7000731FB /* sparkle.xml in Resources */,
 				48102C411D40DF3800D7998E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,6 +177,7 @@
 				48102C491D40E14700D7998E /* Utilities.swift in Sources */,
 				48102C4D1D41021600D7998E /* Configuration.swift in Sources */,
 				48102C3C1D40DF3800D7998E /* ViewController.swift in Sources */,
+				48865FF71D422397000731FB /* LinkTextLabel.swift in Sources */,
 				48102C4B1D40EB0600D7998E /* WindowDelegate.swift in Sources */,
 				48102C3A1D40DF3800D7998E /* AppDelegate.swift in Sources */,
 			);
@@ -324,6 +332,7 @@
 				48102C471D40DF3800D7998E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
