@@ -143,15 +143,18 @@ class ViewController: NSViewController {
         //Create a temporary file to store the zip file
         let tempFile = Util.createTempFile("items.zip")
         spinIndicator.startAnimation(self)
+        self.installSets.enabled = false
         //Download the zip file
         Util.downloadUrl(NSURL(string: "https://lol-item-sets-generator.org/clicks/click.php?id=dl_sets_from_application")!) { (data, res, err) in
             if err != nil {
                 Util.showDialog("Error getting items", text: "There was an internal error while we were getting"
                     + " the items.\n\(err!.description)")
                 print("[installItemSets:85] \(err!)")
+                self.installSets.enabled = true
             } else if res!.statusCode / 100 >= 4 {
                 Util.showDialog("Error getting latest version", text: "The server responded with an error while "
                     + "we were getting the items.");
+                self.installSets.enabled = true
             } else {
                 do {
                     try data!.writeToURL(tempFile!.1, options: NSDataWritingOptions(rawValue: 0))
@@ -162,11 +165,11 @@ class ViewController: NSViewController {
                     })
                     Configuration.instance.installedVersion = self.currentVersion!
                     self.installedPatch.stringValue = "Installed Patch: \(Configuration.instance.installedVersion.toString())"
-                    self.installSets.enabled = false
                 } catch(let e) {
                     Util.showDialog("Error getting items", text: "There was an internal error while we were erxtracting"
                         + " the items.\n\(e)")
                     print("[installItemSets:96] \(e)")
+                    self.installSets.enabled = true
                 }
             }
             
