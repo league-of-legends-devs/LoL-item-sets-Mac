@@ -16,8 +16,10 @@ class ViewController: NSViewController {
     @IBOutlet var installSets: NSButton!
     @IBOutlet var link_: NSTextField!
     @IBOutlet var spinIndicator: NSProgressIndicator!
+    @IBOutlet var autoCheck: NSButton!
     
     private var currentVersion: Configuration.Version?
+    private var timer: NSTimer?
 
     @available(OSX 10.10, *)
     override func viewDidLoad() {
@@ -30,23 +32,7 @@ class ViewController: NSViewController {
         installedPatch.stringValue = "Installed Patch: \(Configuration.instance.installedVersion.toString())"
         checkInstalledFiles()
         //Get the current version from the server
-        Util.downloadString("http://www.lol-item-sets-generator.org/?version") { (data, res, err) in
-            if err != nil {
-                Util.showDialog("Error getting latest version", text: "There was an internal error while we were getting"
-                    + " the latest version.\n\(err!.description)")
-            } else if(res!.statusCode / 100 >= 4) {
-                Util.showDialog("Error getting latest version", text: "The server responded with an error when we were "
-                    + "getting the latest version");
-            } else {
-                self.currentPatch.stringValue = "Current Patch: \(data!)"
-                let fetchedVersion = Configuration.Version(fromString: data!)
-                self.currentVersion = fetchedVersion
-                //If version mismatch the installed, then there's an update
-                if fetchedVersion.compare(Configuration.instance.installedVersion) != 0 {
-                    self.installSets.enabled = true
-                }
-            }
-        }
+        checkServerVersion()
         
         let attrStr = NSMutableAttributedString(string: "Go to the website")
         attrStr.beginEditing()
@@ -55,11 +41,20 @@ class ViewController: NSViewController {
         attrStr.addAttribute(NSUnderlineStyleAttributeName, value: NSNumber(int: 1), range: NSMakeRange(0, 17))
         attrStr.endEditing()
         link_.attributedStringValue = attrStr
+        
+        timer = NSTimer(timeInterval: 60 * 60, target: self, selector: #selector(ViewController.timerFires), userInfo: self, repeats: true)
+        autoCheck.integerValue = Configuration.instance.autoCheck ? 1 : 0
     }
 
     override var representedObject: AnyObject? {
         didSet {
             // Update the view, if already loaded.
+        }
+    }
+    
+    func timerFires() {
+        if autoCheck.integerValue == 1 {
+            checkServerVersion();
         }
     }
     
@@ -88,6 +83,26 @@ class ViewController: NSViewController {
                 //If the folder doesn't exists, then the folder was deleted
                 Configuration.instance.installedVersion = Configuration.Version(major: 0, minor: 0, patch: 0)
                 installedPatch.stringValue = "Installed Patch: 0.0.0"
+            }
+        }
+    }
+    
+    private func checkServerVersion() {
+        Util.downloadString("https://lol-item-sets-generator.org/?version") { (data, res, err) in
+            if err != nil {
+                Util.showDialog("Error getting latest version", text: "There was an internal error while we were getting"
+                    + " the latest version.\n\(err!.description)")
+            } else if(res!.statusCode / 100 >= 4) {
+                Util.showDialog("Error getting latest version", text: "The server responded with an error when we were "
+                    + "getting the latest version");
+            } else {
+                self.currentPatch.stringValue = "Current Patch: \(data!)"
+                let fetchedVersion = Configuration.Version(fromString: data!)
+                self.currentVersion = fetchedVersion
+                //If version mismatch the installed, then there's an update
+                if fetchedVersion.compare(Configuration.instance.installedVersion) != 0 {
+                    self.installSets.enabled = true
+                }
             }
         }
     }
@@ -129,7 +144,7 @@ class ViewController: NSViewController {
         let tempFile = Util.createTempFile("items.zip")
         spinIndicator.startAnimation(self)
         //Download the zip file
-        Util.downloadUrl(NSURL(string: "http://www.lol-item-sets-generator.org/clicks/click.php?id=dl_sets_from_application")!) { (data, res, err) in
+        Util.downloadUrl(NSURL(string: "https://lol-item-sets-generator.org/clicks/click.php?id=dl_sets_from_application")!) { (data, res, err) in
             if err != nil {
                 Util.showDialog("Error getting items", text: "There was an internal error while we were getting"
                     + " the items.\n\(err!.description)")
@@ -160,5 +175,8 @@ class ViewController: NSViewController {
         }
     }
 
+    @IBAction func autoCheckChanged(sender: NSButton) {
+        Configuration.instance.autoCheck = sender.integerValue == 1 ? true : false
+    }
 }
 

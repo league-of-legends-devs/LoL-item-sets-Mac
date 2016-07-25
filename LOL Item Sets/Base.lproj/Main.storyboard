@@ -273,6 +273,20 @@
                                     <constraint firstAttribute="height" constant="16" id="UYV-tt-Zh4"/>
                                 </constraints>
                             </progressIndicator>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="4R1-8P-wOd">
+                                <rect key="frame" x="170" y="109" width="140" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="136" id="GGE-F5-oKW"/>
+                                    <constraint firstAttribute="height" constant="14" id="xCG-1T-2CE"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Version auto-check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ltz-BJ-1IU">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="autoCheckChanged:" target="XfG-lQ-9wD" id="hu7-nw-8my"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Muw-T9-cpX" firstAttribute="leading" secondItem="ZR6-RT-dyg" secondAttribute="trailing" constant="8" id="3BE-62-gjf"/>
@@ -283,6 +297,7 @@
                             <constraint firstAttribute="bottom" secondItem="ZR6-RT-dyg" secondAttribute="bottom" constant="20" id="BPd-sQ-JCd"/>
                             <constraint firstItem="zvT-Ns-jgB" firstAttribute="top" secondItem="rT6-tD-GwK" secondAttribute="bottom" constant="10" id="Esa-3B-v0e"/>
                             <constraint firstAttribute="bottom" secondItem="ru2-O5-Ivg" secondAttribute="bottom" constant="20" id="KMg-sR-DT8"/>
+                            <constraint firstItem="4R1-8P-wOd" firstAttribute="centerX" secondItem="zvT-Ns-jgB" secondAttribute="centerX" id="LC3-wF-ag4"/>
                             <constraint firstItem="rT6-tD-GwK" firstAttribute="leading" secondItem="xRg-dI-r43" secondAttribute="trailing" constant="8" id="RIL-G8-9tv"/>
                             <constraint firstItem="cI2-gQ-3Yg" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="TgY-LB-nEB"/>
                             <constraint firstItem="Muw-T9-cpX" firstAttribute="leading" secondItem="ZR6-RT-dyg" secondAttribute="trailing" constant="8" id="To2-md-SKI"/>
@@ -294,6 +309,7 @@
                             <constraint firstItem="ogQ-3N-YsC" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="dmh-Hk-M0H"/>
                             <constraint firstItem="ZR6-RT-dyg" firstAttribute="leading" secondItem="ru2-O5-Ivg" secondAttribute="trailing" constant="8" id="eSw-0t-ojL"/>
                             <constraint firstItem="ZR6-RT-dyg" firstAttribute="leading" secondItem="ru2-O5-Ivg" secondAttribute="trailing" constant="8" id="hpN-aj-0Vi"/>
+                            <constraint firstItem="4R1-8P-wOd" firstAttribute="top" secondItem="zvT-Ns-jgB" secondAttribute="bottom" constant="8" id="jZq-gY-PPS"/>
                             <constraint firstItem="deS-a6-Avj" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="66" id="kPD-k5-aEa"/>
                             <constraint firstItem="rT6-tD-GwK" firstAttribute="top" secondItem="ogQ-3N-YsC" secondAttribute="bottom" constant="8" id="lkE-Si-OLO"/>
                             <constraint firstItem="zvT-Ns-jgB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="wq9-Hj-Xrh"/>
@@ -301,6 +317,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="autoCheck" destination="4R1-8P-wOd" id="6lX-tn-Euu"/>
                         <outlet property="currentPatch" destination="cI2-gQ-3Yg" id="95w-c4-hho"/>
                         <outlet property="installSets" destination="rT6-tD-GwK" id="aCh-zo-A9c"/>
                         <outlet property="installedPatch" destination="ogQ-3N-YsC" id="Yvo-hp-o9e"/>

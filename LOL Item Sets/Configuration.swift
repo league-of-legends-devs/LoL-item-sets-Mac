@@ -15,7 +15,8 @@ class Configuration {
     private init() {
         storage = NSUserDefaults.standardUserDefaults()
         storage.registerDefaults([
-            "installedVersion": "0.0.0"
+            "installedVersion": "0.0.0",
+            "autoCheck": true
         ])
     }
     
@@ -80,6 +81,16 @@ class Configuration {
         
         set {
             storage.setObject(newValue.toString(), forKey: "installedVersion")
+        }
+    }
+    
+    var autoCheck: Bool {
+        get {
+            return storage.boolForKey("autoCheck")
+        }
+        
+        set {
+            storage.setBool(newValue, forKey: "autoCheck")
         }
     }
     

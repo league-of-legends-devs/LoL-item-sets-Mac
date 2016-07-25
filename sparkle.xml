@@ -5,6 +5,24 @@
         <link>https://raw.githubusercontent.com/melchor629/LoL-item-sets-Mac/master/sparkle.xml</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
+        
+        <item>
+            <title>Version 0.3</title>
+            <description><![CDATA[
+                <h2>Improvments</h2>
+                <ul>
+                <li>Now uses https for all connections</li>
+                <li>There's an auto-version-check in background</li>
+                </ul>
+            ]]>
+            </description>
+            <pubDate>Mon, 25 Jul 2016 20:00:00 +0000</pubDate>
+            <enclosure url="https://github.com/melchor629/LoL-item-sets-Mac/releases/download/0.3/lol-item-sets.zip"
+            sparkle:version="3"
+            sparkle:shortVersionString="0.3"
+            length="2963440"
+            type="application/octet-stream" />
+        </item>
 
         <item>
             <title>Version 0.2</title>
