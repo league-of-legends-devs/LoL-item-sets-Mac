@@ -15,6 +15,7 @@ class ViewController: NSViewController {
     @IBOutlet var pathControl: NSPathControl!
     @IBOutlet var installSets: NSButton!
     @IBOutlet var link_: NSTextField!
+    @IBOutlet var spinIndicator: NSProgressIndicator!
     
     private var currentVersion: Configuration.Version?
 
@@ -31,7 +32,11 @@ class ViewController: NSViewController {
         //Get the current version from the server
         Util.downloadString("http://www.lol-item-sets-generator.org/?version") { (data, res, err) in
             if err != nil {
-                //TODO check this and also a bad response error
+                Util.showDialog("Error getting latest version", text: "There was an internal error while we were getting"
+                    + " the latest version.\n\(err!.description)")
+            } else if(res!.statusCode / 100 >= 4) {
+                Util.showDialog("Error getting latest version", text: "The server responded with an error when we were "
+                    + "getting the latest version");
             } else {
                 self.currentPatch.stringValue = "Current Patch: \(data!)"
                 let fetchedVersion = Configuration.Version(fromString: data!)
@@ -50,7 +55,6 @@ class ViewController: NSViewController {
         attrStr.addAttribute(NSUnderlineStyleAttributeName, value: NSNumber(int: 1), range: NSMakeRange(0, 17))
         attrStr.endEditing()
         link_.attributedStringValue = attrStr
-        
     }
 
     override var representedObject: AnyObject? {
@@ -123,11 +127,16 @@ class ViewController: NSViewController {
     @IBAction func installItemSets(sender: NSButton) {
         //Create a temporary file to store the zip file
         let tempFile = Util.createTempFile("items.zip")
+        spinIndicator.startAnimation(self)
         //Download the zip file
         Util.downloadUrl(NSURL(string: "http://www.lol-item-sets-generator.org/clicks/click.php?id=dl_sets_from_application")!) { (data, res, err) in
             if err != nil {
-                //TODO check this and also a bad response error
+                Util.showDialog("Error getting items", text: "There was an internal error while we were getting"
+                    + " the items.\n\(err!.description)")
                 print("[installItemSets:85] \(err!)")
+            } else if res!.statusCode / 100 >= 4 {
+                Util.showDialog("Error getting latest version", text: "The server responded with an error while "
+                    + "we were getting the items.");
             } else {
                 do {
                     try data!.writeToURL(tempFile!.1, options: NSDataWritingOptions(rawValue: 0))
@@ -140,11 +149,14 @@ class ViewController: NSViewController {
                     self.installedPatch.stringValue = "Installed Patch: \(Configuration.instance.installedVersion.toString())"
                     self.installSets.enabled = false
                 } catch(let e) {
-                    print("[installItemSets:96] \(e)") //TODO
+                    Util.showDialog("Error getting items", text: "There was an internal error while we were erxtracting"
+                        + " the items.\n\(e)")
+                    print("[installItemSets:96] \(e)")
                 }
             }
             
             tempFile?.0.closeFile()
+            self.spinIndicator.stopAnimation(self)
         }
     }
 

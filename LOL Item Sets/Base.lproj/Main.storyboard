@@ -266,15 +266,24 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="xRg-dI-r43">
+                                <rect key="frame" x="87" y="167" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="6At-FY-2Ox"/>
+                                    <constraint firstAttribute="height" constant="16" id="UYV-tt-Zh4"/>
+                                </constraints>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Muw-T9-cpX" firstAttribute="leading" secondItem="ZR6-RT-dyg" secondAttribute="trailing" constant="8" id="3BE-62-gjf"/>
                             <constraint firstAttribute="trailing" secondItem="zvT-Ns-jgB" secondAttribute="trailing" constant="20" id="3RK-aC-eDE"/>
                             <constraint firstAttribute="bottom" secondItem="YEl-Da-goN" secondAttribute="bottom" constant="3" id="7GQ-kv-X3b"/>
                             <constraint firstItem="cI2-gQ-3Yg" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="8iK-ct-uTJ"/>
+                            <constraint firstItem="xRg-dI-r43" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="87" id="AFp-mL-faG"/>
                             <constraint firstAttribute="bottom" secondItem="ZR6-RT-dyg" secondAttribute="bottom" constant="20" id="BPd-sQ-JCd"/>
                             <constraint firstItem="zvT-Ns-jgB" firstAttribute="top" secondItem="rT6-tD-GwK" secondAttribute="bottom" constant="10" id="Esa-3B-v0e"/>
                             <constraint firstAttribute="bottom" secondItem="ru2-O5-Ivg" secondAttribute="bottom" constant="20" id="KMg-sR-DT8"/>
+                            <constraint firstItem="rT6-tD-GwK" firstAttribute="leading" secondItem="xRg-dI-r43" secondAttribute="trailing" constant="8" id="RIL-G8-9tv"/>
                             <constraint firstItem="cI2-gQ-3Yg" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="TgY-LB-nEB"/>
                             <constraint firstItem="Muw-T9-cpX" firstAttribute="leading" secondItem="ZR6-RT-dyg" secondAttribute="trailing" constant="8" id="To2-md-SKI"/>
                             <constraint firstAttribute="trailing" secondItem="YEl-Da-goN" secondAttribute="trailing" constant="3" id="Uim-80-u7T"/>
@@ -297,6 +306,7 @@
                         <outlet property="installedPatch" destination="ogQ-3N-YsC" id="Yvo-hp-o9e"/>
                         <outlet property="link_" destination="ru2-O5-Ivg" id="eSq-BL-RAz"/>
                         <outlet property="pathControl" destination="zvT-Ns-jgB" id="WEo-Bg-BTM"/>
+                        <outlet property="spinIndicator" destination="xRg-dI-r43" id="4g4-KP-Rwv"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

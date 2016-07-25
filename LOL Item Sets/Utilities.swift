@@ -10,16 +10,16 @@ import Foundation
 import Cocoa
 
 class Util {
-    static func downloadUrl(url: NSURL, cbk: (NSData?, NSURLResponse?, NSError?) -> Void) {
+    static func downloadUrl(url: NSURL, cbk: (NSData?, NSHTTPURLResponse?, NSError?) -> Void) {
         let request = NSURLRequest.init(URL: url, cachePolicy: .ReloadIgnoringLocalCacheData, timeoutInterval: 5)
         NSURLSession.sharedSession().dataTaskWithRequest(request) { data, res, err in
             dispatch_async(dispatch_get_main_queue(), { 
-                cbk(data, res, err)
+                cbk(data, res as? NSHTTPURLResponse, err)
             })
         }.resume()
     }
 
-    static func downloadString(url: NSURL, cbk: (String?, NSURLResponse?, NSError?) -> Void) {
+    static func downloadString(url: NSURL, cbk: (String?, NSHTTPURLResponse?, NSError?) -> Void) {
         downloadUrl(url) { data, res, err in
             if data != nil {
                 cbk(String(data: data!, encoding: NSUTF8StringEncoding)!, res, err)
@@ -27,7 +27,7 @@ class Util {
         }
     }
     
-    static func downloadString(url: String, cbk: (String?, NSURLResponse?, NSError?) -> Void) {
+    static func downloadString(url: String, cbk: (String?, NSHTTPURLResponse?, NSError?) -> Void) {
         downloadString(NSURL(string: url)!, cbk: cbk)
     }
     

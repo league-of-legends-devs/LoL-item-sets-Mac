@@ -61,13 +61,11 @@ class LinkTextLabel : NSTextField {
         super.mouseEntered(theEvent)
         NSCursor.pointingHandCursor().push()
         NSCursor.pointingHandCursor().set()
-        Swift.print("Enter")
     }
     
     override func mouseExited(theEvent: NSEvent) {
         super.mouseExited(theEvent)
         NSCursor.pointingHandCursor().pop()
-        Swift.print("Exit")
     }
     
     override func mouseUp(theEvent: NSEvent) {
