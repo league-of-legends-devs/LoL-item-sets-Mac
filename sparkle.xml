@@ -17,51 +17,11 @@
             ]]>
             </description>
             <pubDate>Mon, 25 Jul 2016 20:00:00 +0000</pubDate>
-            <enclosure url="https://github.com/melchor629/LoL-item-sets-Mac/releases/download/0.3/lol-item-sets.zip"
+            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.3/lol-item-sets.zip"
             sparkle:version="3"
             sparkle:shortVersionString="0.3"
-            length="2963542"
+            length="2962393"
             type="application/octet-stream" />
-        </item>
-
-        <item>
-            <title>Version 0.2</title>
-            <description><![CDATA[
-                <h2>Good :)</h2>
-                <ul>
-                <li>App has an icon</li>
-                <li>When downloading patches, shows an spin indicator</li>
-                <li>Show more errors in form of alerts</li>
-                </ul>
-            ]]>
-            </description>
-            <pubDate>Mon, 25 Jul 2016 14:00:00 +0000</pubDate>
-            <enclosure url="https://github.com/melchor629/LoL-item-sets-Mac/releases/download/0.2/lol-item-sets.zip"
-            sparkle:version="2"
-            sparkle:shortVersionString="0.2"
-            length="2960260"
-            type="application/octet-stream" />
-        </item>
-        
-        <item>
-            <title>Version 0.1</title>
-            <description><![CDATA[
-                <h2>Initial Features</h2>
-                <ul>
-                    <li>Download patches</li>
-                    <li>Detect if the items sets have suffered some changes</li>
-                    <li>Some links down</li>
-                    <li>Change LoL path and detect if new path is LoL game</li>
-                    <li>Auto update</li>
-                </ul>
-            ]]>
-            </description>
-            <pubDate>Fri, 22 Jul 2016 13:20:11 +0000</pubDate>
-            <enclosure url="https://github.com/melchor629/LoL-item-sets-Mac/releases/download/0.1/lol-item-sets.zip"
-                sparkle:version="1"
-                sparkle:shortVersionString="0.1"
-                length="2973644"
-                type="application/octet-stream" />
         </item>
 
     </channel>
