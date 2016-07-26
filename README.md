@@ -4,6 +4,14 @@ Download and automatically install the lastest LoL item sets from the website : 
 
 Windows version here : https://github.com/Ilshidur/LoL-item-sets
 
+Preview:
+
+![preview](preview.png)
+
+Requires:
+
+ - Mac OS X 10.9 or higher
+
 ## Help !
 
 We need contributors for this project ;-)
