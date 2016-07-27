@@ -2,9 +2,27 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
         <title>LoL items Sets Mac app</title>
-        <link>https://raw.githubusercontent.com/melchor629/LoL-item-sets-Mac/master/sparkle.xml</link>
+        <link>https://raw.githubusercontent.com/ilshidur/LoL-item-sets-Mac/master/sparkle.xml</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
+        
+        <item>
+            <title>Version 0.4</title>
+            <description><![CDATA[
+                <ul>
+                <li>Now deletes old item set files</li>
+                <li>Shows a badge on the Dock icon when there's a new version</li>
+                <li>Some code won't be called twice</li>
+                </ul>
+            ]]>
+            </description>
+            <pubDate>Mon, 27 Jul 2016 14:00:00 +0000</pubDate>
+            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.4/lol-item-sets.zip"
+            sparkle:version="4"
+            sparkle:shortVersionString="0.4"
+            length="2965956"
+            type="application/octet-stream" />
+        </item>
         
         <item>
             <title>Version 0.3</title>
