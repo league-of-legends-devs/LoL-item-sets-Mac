@@ -107,8 +107,30 @@ class ViewController: NSViewController {
                 //If version mismatch the installed, then there's an update
                 if fetchedVersion.compare(Configuration.instance.installedVersion) != 0 {
                     self.installSets.enabled = true
+                    NSApplication.sharedApplication().dockTile.showsApplicationBadge = true
+                    NSApplication.sharedApplication().dockTile.badgeLabel = "New Set"
                 }
             }
+        }
+    }
+    
+    private func deleteOldItems(version: Configuration.Version) {
+        do {
+            print("Removing old items")
+            let path = pathControl.URL!.path!
+            let verStr = version.toString()
+            let champs = try NSFileManager.defaultManager().contentsOfDirectoryAtPath("\(path)/Contents/LoL/Config/ItemSets/");
+            for champ in champs {
+                let items = try NSFileManager.defaultManager().contentsOfDirectoryAtPath("\(path)/Contents/LoL/Config/ItemSets/\(champ)/Recommended/")
+                for item in items {
+                    if !item.containsString(verStr) {
+                        _ = try? NSFileManager.defaultManager().removeItemAtPath("\(path)/Contents/LoL/Config/ItemSets/\(champ)/Recommended/\(item)")
+                        print("Removed \(path)/Contents/LoL/Config/ItemSets/\(champ)/Recommended/\(item)")
+                    }
+                }
+            }
+        } catch {
+            Util.showDialog("Error when removing", text: "Could not remove old items. Check if you have permissions to read and write the app.");
         }
     }
 
@@ -168,8 +190,10 @@ class ViewController: NSViewController {
                     try Zip.unzipFile(tempFile!.1, destination: lolPath!, overwrite: true, password: nil, progress: { (progress) in
                         //TODO
                     })
+                    NSApplication.sharedApplication().dockTile.showsApplicationBadge = false
                     Configuration.instance.installedVersion = self.currentVersion!
                     self.installedPatch.stringValue = "Installed Patch: \(Configuration.instance.installedVersion.toString())"
+                    self.deleteOldItems(self.currentVersion!)
                 } catch(let e) {
                     Util.showDialog("Error getting items", text: "There was an internal error while we were erxtracting"
                         + " the items.\n\(e)")
