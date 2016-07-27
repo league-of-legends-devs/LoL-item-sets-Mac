@@ -20,15 +20,20 @@ class ViewController: NSViewController {
     
     private var currentVersion: Configuration.Version?
     private var timer: NSTimer?
+    private var awakeFromNibExecuted = false
 
     @available(OSX 10.10, *)
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.awakeFromNib()
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        if awakeFromNibExecuted {
+            return
+        }
+        
+        awakeFromNibExecuted = true
         installedPatch.stringValue = "Installed Patch: \(Configuration.instance.installedVersion.toString())"
         checkInstalledFiles()
         //Get the current version from the server
@@ -77,7 +82,7 @@ class ViewController: NSViewController {
                         }
                     }
                 } catch {
-                    
+                    Util.showDialog("Error when reading", text: "Could not read LoL contents. Check if you have permissions to read the app.");
                 }
             } else {
                 //If the folder doesn't exists, then the folder was deleted
