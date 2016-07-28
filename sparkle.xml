@@ -20,6 +20,7 @@
             <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.4/lol-item-sets-0.4.0.zip"
             sparkle:version="4"
             sparkle:shortVersionString="0.4"
+            sparkle:dsaSignature="MCwCFCQeQBMqGvYHWSoDbqe3HvnWGeo7AhRd34i8UmdPfX7mmQdH4IMhfvfQlA=="
             length="2965956"
             type="application/octet-stream" />
         </item>
