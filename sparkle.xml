@@ -17,9 +17,10 @@
             ]]>
             </description>
             <pubDate>Mon, 27 Jul 2016 14:00:00 +0000</pubDate>
-            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.4/lol-item-sets.zip"
+            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.4/lol-item-sets-0.4.0.zip"
             sparkle:version="4"
             sparkle:shortVersionString="0.4"
+            sparkle:dsaSignature="MCwCFCQeQBMqGvYHWSoDbqe3HvnWGeo7AhRd34i8UmdPfX7mmQdH4IMhfvfQlA=="
             length="2965956"
             type="application/octet-stream" />
         </item>
@@ -35,7 +36,7 @@
             ]]>
             </description>
             <pubDate>Mon, 25 Jul 2016 20:00:00 +0000</pubDate>
-            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.3/lol-item-sets.zip"
+            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.3/lol-item-sets-0.3.0.zip"
             sparkle:version="3"
             sparkle:shortVersionString="0.3"
             length="2962393"
