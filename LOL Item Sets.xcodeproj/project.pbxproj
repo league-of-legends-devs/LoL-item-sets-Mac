@@ -19,8 +19,7 @@
 		48102C541D4169FA00D7998E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 48102C4F1D4110A200D7998E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		48102C551D4169FA00D7998E /* Zip.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 48102C501D4110A200D7998E /* Zip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		48865FF71D422397000731FB /* LinkTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48865FF61D422397000731FB /* LinkTextLabel.swift */; };
-		48865FF91D4232C7000731FB /* sparkle.xml in Resources */ = {isa = PBXBuildFile; fileRef = 48865FF81D4232C7000731FB /* sparkle.xml */; };
-		48AC8EC61D462E3C00D4431C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 48AC8EC51D462E3C00D4431C /* icon.png */; };
+		48DE6F991D4A053300244C02 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 48DE6F981D4A053300244C02 /* dsa_pub.pem */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +52,7 @@
 		48865FF61D422397000731FB /* LinkTextLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTextLabel.swift; sourceTree = "<group>"; };
 		48865FF81D4232C7000731FB /* sparkle.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sparkle.xml; sourceTree = "<group>"; };
 		48AC8EC51D462E3C00D4431C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		48DE6F981D4A053300244C02 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +76,7 @@
 				48102C4F1D4110A200D7998E /* Sparkle.framework */,
 				48102C501D4110A200D7998E /* Zip.framework */,
 				48AC8EC51D462E3C00D4431C /* icon.png */,
+				48DE6F981D4A053300244C02 /* dsa_pub.pem */,
 				48102C381D40DF3800D7998E /* LOL Item Sets */,
 				48102C371D40DF3800D7998E /* Products */,
 			);
@@ -164,9 +165,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48AC8EC61D462E3C00D4431C /* icon.png in Resources */,
+				48DE6F991D4A053300244C02 /* dsa_pub.pem in Resources */,
 				48102C3E1D40DF3800D7998E /* Assets.xcassets in Resources */,
-				48865FF91D4232C7000731FB /* sparkle.xml in Resources */,
 				48102C411D40DF3800D7998E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
