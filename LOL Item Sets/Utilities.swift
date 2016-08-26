@@ -77,4 +77,11 @@ class Util {
         }
         return 0
     }
+    
+    static func fromJSON(json: String) -> [String: AnyObject]? {
+        do {
+            return try NSJSONSerialization.JSONObjectWithData(json.dataUsingEncoding(NSUTF8StringEncoding)!, options: []) as? [String: AnyObject]
+        } catch(_) {}
+        return nil;
+    }
 }
