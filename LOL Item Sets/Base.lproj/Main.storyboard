@@ -113,7 +113,7 @@
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="LoL Item Sets" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -285,6 +285,14 @@
                                     <action selector="autoCheckChanged:" target="XfG-lQ-9wD" id="hu7-nw-8my"/>
                                 </connections>
                             </button>
+                            <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cve-b0-b9K">
+                                <rect key="frame" x="18" y="45" width="444" height="58"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Nothing to see here... :|" allowsEditingTextAttributes="YES" id="TLl-Zg-qce">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Muw-T9-cpX" firstAttribute="leading" secondItem="ZR6-RT-dyg" secondAttribute="trailing" constant="8" id="3BE-62-gjf"/>
@@ -320,6 +328,7 @@
                         <outlet property="installSets" destination="rT6-tD-GwK" id="aCh-zo-A9c"/>
                         <outlet property="installedPatch" destination="ogQ-3N-YsC" id="Yvo-hp-o9e"/>
                         <outlet property="link_" destination="ru2-O5-Ivg" id="eSq-BL-RAz"/>
+                        <outlet property="newsText" destination="cve-b0-b9K" id="ong-gC-QZi"/>
                         <outlet property="pathControl" destination="zvT-Ns-jgB" id="WEo-Bg-BTM"/>
                         <outlet property="spinIndicator" destination="xRg-dI-r43" id="4g4-KP-Rwv"/>
                     </connections>

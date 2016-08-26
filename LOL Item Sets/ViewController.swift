@@ -17,6 +17,7 @@ class ViewController: NSViewController {
     @IBOutlet var link_: NSTextField!
     @IBOutlet var spinIndicator: NSProgressIndicator!
     @IBOutlet var autoCheck: NSButton!
+    @IBOutlet var newsText: NSTextField!
     
     private var currentVersion: Configuration.Version?
     private var timer: NSTimer?
@@ -39,6 +40,8 @@ class ViewController: NSViewController {
         checkInstalledFiles()
         //Get the current version from the server
         checkServerVersion()
+        //Get news and show it if there is
+        getNews()
         
         let attrStr = NSMutableAttributedString(string: "Go to the website")
         attrStr.beginEditing()
@@ -62,6 +65,7 @@ class ViewController: NSViewController {
         if autoCheck.integerValue == 1 {
             checkServerVersion();
         }
+        getNews()
     }
     
     private func checkInstalledFiles() {
@@ -117,6 +121,26 @@ class ViewController: NSViewController {
                     }
                 } else {
                     Util.showDialog("Error getting latest version", text: "The server responded with an invalid data")
+                }
+            }
+        }
+    }
+    
+    private func getNews() {
+        Util.downloadString("\(webBase)/api/news") { (data, res, err) in
+            if err != nil {
+                Util.showDialog("Cannot retrieve news", text: "There was an internal error while we were getting that news")
+            } else if(res!.statusCode / 100 >= 4) {
+                Util.showDialog("Cannot retrieve news", text: "The server responded with an error while we were getting the news")
+            } else {
+                //Deserialize JSON
+                let obj = Util.fromJSON(data!)
+                if obj != nil && obj!["text"] != nil {
+                    let text = obj!["text"]! as! String
+                    self.newsText.stringValue = text
+                    self.newsText.hidden = false
+                } else {
+                    self.newsText.hidden = true
                 }
             }
         }
