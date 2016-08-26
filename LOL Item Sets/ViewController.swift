@@ -137,8 +137,12 @@ class ViewController: NSViewController {
                 let obj = Util.fromJSON(data!)
                 if obj != nil && obj!["text"] != nil {
                     let text = obj!["text"]! as! String
-                    self.newsText.stringValue = text
-                    self.newsText.hidden = false
+                    if text != "" {
+                        self.newsText.stringValue = text
+                        self.newsText.hidden = false
+                    } else {
+                        self.newsText.hidden = true
+                    }
                 } else {
                     self.newsText.hidden = true
                 }
