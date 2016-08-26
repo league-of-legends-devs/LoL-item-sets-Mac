@@ -18,6 +18,8 @@ class ViewController: NSViewController {
     @IBOutlet var spinIndicator: NSProgressIndicator!
     @IBOutlet var autoCheck: NSButton!
     @IBOutlet var newsText: NSTextField!
+    @IBOutlet var generatedLabel: NSTextField!
+    @IBOutlet var installedLabel: NSTextField!
     
     private var currentVersion: Configuration.Version?
     private var timer: NSTimer?
@@ -53,6 +55,12 @@ class ViewController: NSViewController {
         
         timer = NSTimer(timeInterval: 60 * 60, target: self, selector: #selector(ViewController.timerFires), userInfo: self, repeats: true)
         autoCheck.integerValue = Configuration.instance.autoCheck ? 1 : 0
+        
+        if let date = Configuration.instance.installedDate {
+            installedLabel.stringValue = "Installed \(date.dateStr)"
+        } else {
+            installedLabel.hidden = true
+        }
     }
 
     override var representedObject: AnyObject? {
@@ -113,12 +121,17 @@ class ViewController: NSViewController {
                     self.currentPatch.stringValue = "Current Patch: \(versionStr)"
                     let fetchedVersion = Configuration.Version(fromString: versionStr)
                     self.currentVersion = fetchedVersion
+
                     //If version mismatch the installed, then there's an update
                     if fetchedVersion.compare(Configuration.instance.installedVersion) != 0 {
                         self.installSets.enabled = true
                         NSApplication.sharedApplication().dockTile.showsApplicationBadge = true
                         NSApplication.sharedApplication().dockTile.badgeLabel = "New Set"
                     }
+                    
+                    //Generation date
+                    let genDate = Util.fromJSONDate(obj!["generationDate"]! as! String)
+                    self.generatedLabel.stringValue = "Generated \(genDate!.dateStr)"
                 } else {
                     Util.showDialog("Error getting latest version", text: "The server responded with an invalid data")
                 }
@@ -230,6 +243,10 @@ class ViewController: NSViewController {
                     Configuration.instance.installedVersion = self.currentVersion!
                     self.installedPatch.stringValue = "Installed Patch: \(Configuration.instance.installedVersion.toString())"
                     self.deleteOldItems(self.currentVersion!)
+
+                    Configuration.instance.installedDate = NSDate()
+                    self.installedLabel.stringValue = "Installed \(NSDate().dateStr)"
+                    self.installedLabel.hidden = false
                 } catch(let e) {
                     Util.showDialog("Error getting items", text: "There was an internal error while we were erxtracting"
                         + " the items.\n\(e)")

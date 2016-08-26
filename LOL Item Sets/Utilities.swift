@@ -84,4 +84,22 @@ class Util {
         } catch(_) {}
         return nil;
     }
+    
+    static func fromJSONDate(dateStr: String) -> NSDate? {
+        let dateFor = NSDateFormatter()
+        dateFor.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSZ"
+        return dateFor.dateFromString(dateStr)
+    }
+}
+
+extension NSDate {
+    var dateStr: String {
+        get {
+            let dateTo = NSDateFormatter()
+            dateTo.locale = NSLocale(localeIdentifier: "en_GB")
+            dateTo.timeZone = NSTimeZone.localTimeZone()
+            dateTo.dateFormat = "dd MMM yyyy 'at' HH:mm"
+            return dateTo.stringFromDate(self)
+        }
+    }
 }
