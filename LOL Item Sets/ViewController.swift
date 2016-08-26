@@ -24,7 +24,7 @@ class ViewController: NSViewController {
     private var currentVersion: Configuration.Version?
     private var timer: NSTimer?
     private var awakeFromNibExecuted = false
-    private let webBase = "http://5.196.66.83:9004"
+    private let webBase = "https://lol-item-sets-generator.org"
 
     @available(OSX 10.10, *)
     override func viewDidLoad() {
