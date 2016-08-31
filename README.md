@@ -6,15 +6,17 @@ Download and automatically install the lastest LoL item sets from the website : 
 
 Windows version here : https://github.com/Ilshidur/LoL-item-sets
 
-Preview:
-
 ![preview](preview.png)
 
-Requires:
+## Reporting a bug
+
+* Bug on the **application** : [submit here](https://github.com/Ilshidur/LoL-item-sets-Mac/issues/new)
+* Bug on the **item sets** : [submit here](https://github.com/Ilshidur/lol-item-sets-builder/issues/new)
+
+## Requirements
 
  - Mac OS X 10.9 or higher
 
-CONTACT ME
----------
+## Contact
 
 Contact me at [ilshidur@lol-item-sets-generator.org](mailto:ilshidur@lol-item-sets-generator.org) or [ilshidur@gmail.com](mailto:ilshidur@gmail.com).
