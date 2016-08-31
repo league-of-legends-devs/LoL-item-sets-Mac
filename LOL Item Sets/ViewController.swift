@@ -17,10 +17,14 @@ class ViewController: NSViewController {
     @IBOutlet var link_: NSTextField!
     @IBOutlet var spinIndicator: NSProgressIndicator!
     @IBOutlet var autoCheck: NSButton!
+    @IBOutlet var newsText: NSTextField!
+    @IBOutlet var generatedLabel: NSTextField!
+    @IBOutlet var installedLabel: NSTextField!
     
     private var currentVersion: Configuration.Version?
     private var timer: NSTimer?
     private var awakeFromNibExecuted = false
+    private let webBase = "https://lol-item-sets-generator.org"
 
     @available(OSX 10.10, *)
     override func viewDidLoad() {
@@ -38,10 +42,12 @@ class ViewController: NSViewController {
         checkInstalledFiles()
         //Get the current version from the server
         checkServerVersion()
+        //Get news and show it if there is
+        getNews()
         
         let attrStr = NSMutableAttributedString(string: "Go to the website")
         attrStr.beginEditing()
-        attrStr.addAttribute(NSLinkAttributeName, value: NSURL(string: "https://lol-item-sets-generator.org/")!, range: NSMakeRange(0, 17))
+        attrStr.addAttribute(NSLinkAttributeName, value: NSURL(string: "\(webBase)/")!, range: NSMakeRange(0, 17))
         attrStr.addAttribute(NSForegroundColorAttributeName, value: NSColor.blueColor(), range: NSMakeRange(0, 17))
         attrStr.addAttribute(NSUnderlineStyleAttributeName, value: NSNumber(int: 1), range: NSMakeRange(0, 17))
         attrStr.endEditing()
@@ -49,6 +55,12 @@ class ViewController: NSViewController {
         
         timer = NSTimer(timeInterval: 60 * 60, target: self, selector: #selector(ViewController.timerFires), userInfo: self, repeats: true)
         autoCheck.integerValue = Configuration.instance.autoCheck ? 1 : 0
+        
+        if let date = Configuration.instance.installedDate {
+            installedLabel.stringValue = "Installed \(date.dateStr)"
+        } else {
+            installedLabel.hidden = true
+        }
     }
 
     override var representedObject: AnyObject? {
@@ -61,6 +73,7 @@ class ViewController: NSViewController {
         if autoCheck.integerValue == 1 {
             checkServerVersion();
         }
+        getNews()
     }
     
     private func checkInstalledFiles() {
@@ -93,22 +106,58 @@ class ViewController: NSViewController {
     }
     
     private func checkServerVersion() {
-        Util.downloadString("https://lol-item-sets-generator.org/?version") { (data, res, err) in
+        Util.downloadString("\(webBase)/api/patch") { (data, res, err) in
             if err != nil {
                 Util.showDialog("Error getting latest version", text: "There was an internal error while we were getting"
                     + " the latest version.\n\(err!.description)")
             } else if(res!.statusCode / 100 >= 4) {
                 Util.showDialog("Error getting latest version", text: "The server responded with an error when we were "
-                    + "getting the latest version");
+                    + "getting the latest version")
             } else {
-                self.currentPatch.stringValue = "Current Patch: \(data!)"
-                let fetchedVersion = Configuration.Version(fromString: data!)
-                self.currentVersion = fetchedVersion
-                //If version mismatch the installed, then there's an update
-                if fetchedVersion.compare(Configuration.instance.installedVersion) != 0 {
-                    self.installSets.enabled = true
-                    NSApplication.sharedApplication().dockTile.showsApplicationBadge = true
-                    NSApplication.sharedApplication().dockTile.badgeLabel = "New Set"
+                //Deserialize JSON
+                let obj = Util.fromJSON(data!)
+                if obj != nil && obj!["version"] != nil {
+                    let versionStr = obj!["version"]! as! String
+                    self.currentPatch.stringValue = "Current Patch: \(versionStr)"
+                    let fetchedVersion = Configuration.Version(fromString: versionStr)
+                    self.currentVersion = fetchedVersion
+
+                    //If version mismatch the installed, then there's an update
+                    if fetchedVersion.compare(Configuration.instance.installedVersion) != 0 {
+                        self.installSets.enabled = true
+                        NSApplication.sharedApplication().dockTile.showsApplicationBadge = true
+                        NSApplication.sharedApplication().dockTile.badgeLabel = "New Set"
+                    }
+                    
+                    //Generation date
+                    let genDate = Util.fromJSONDate(obj!["generationDate"]! as! String)
+                    self.generatedLabel.stringValue = "Generated \(genDate!.dateStr)"
+                } else {
+                    Util.showDialog("Error getting latest version", text: "The server responded with an invalid data")
+                }
+            }
+        }
+    }
+    
+    private func getNews() {
+        Util.downloadString("\(webBase)/api/news") { (data, res, err) in
+            if err != nil {
+                Util.showDialog("Cannot retrieve news", text: "There was an internal error while we were getting that news")
+            } else if(res!.statusCode / 100 >= 4) {
+                Util.showDialog("Cannot retrieve news", text: "The server responded with an error while we were getting the news")
+            } else {
+                //Deserialize JSON
+                let obj = Util.fromJSON(data!)
+                if obj != nil && obj!["text"] != nil {
+                    let text = obj!["text"]! as! String
+                    if text != "" {
+                        self.newsText.stringValue = text
+                        self.newsText.hidden = false
+                    } else {
+                        self.newsText.hidden = true
+                    }
+                } else {
+                    self.newsText.hidden = true
                 }
             }
         }
@@ -143,7 +192,7 @@ class ViewController: NSViewController {
         fileDialog.allowedFileTypes = ["app"]
         fileDialog.runModal()
         
-        //Check if the selected .app "file" (it's a folder) is LoL, and can be read a written
+        //Check if the selected .app "file" (it's a folder) is LoL, and can be read and written
         let url = fileDialog.URL
         if url != nil {
             let path = fileDialog.URL!.path!
@@ -172,7 +221,7 @@ class ViewController: NSViewController {
         spinIndicator.startAnimation(self)
         self.installSets.enabled = false
         //Download the zip file
-        Util.downloadUrl(NSURL(string: "https://lol-item-sets-generator.org/clicks/click.php?id=dl_sets_from_application")!) { (data, res, err) in
+        Util.downloadUrl(NSURL(string: "\(webBase)/downloads/sets-from-app")!) { (data, res, err) in
             if err != nil {
                 Util.showDialog("Error getting items", text: "There was an internal error while we were getting"
                     + " the items.\n\(err!.description)")
@@ -194,6 +243,10 @@ class ViewController: NSViewController {
                     Configuration.instance.installedVersion = self.currentVersion!
                     self.installedPatch.stringValue = "Installed Patch: \(Configuration.instance.installedVersion.toString())"
                     self.deleteOldItems(self.currentVersion!)
+
+                    Configuration.instance.installedDate = NSDate()
+                    self.installedLabel.stringValue = "Installed \(NSDate().dateStr)"
+                    self.installedLabel.hidden = false
                 } catch(let e) {
                     Util.showDialog("Error getting items", text: "There was an internal error while we were erxtracting"
                         + " the items.\n\(e)")

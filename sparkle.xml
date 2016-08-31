@@ -7,6 +7,26 @@
         <language>en</language>
         
         <item>
+            <title>Version 0.5</title>
+            <description><![CDATA[
+                <ul>
+                <li>Show news if there are</li>
+                <li>Show when the generated patch was generated</li>
+                <li>Show when the installed patch was installed</li>
+                <li>Changed the GUI organization a bit</li>
+                </ul>
+            ]]>
+            </description>
+            <pubDate>Fri, 26 Jul 2016 18:00:00 +0000</pubDate>
+            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.5/lol-item-sets-0.5.0.zip"
+            sparkle:version="5"
+            sparkle:shortVersionString="0.5"
+            sparkle:dsaSignature="MCwCFFRsCfpLZUI9uNKZc0sSw6AO638oAhQzGNXMeLU5VUJYl2uhe2jPSZ0amw=="
+            length="2968634"
+            type="application/octet-stream" />
+        </item>
+        
+        <item>
             <title>Version 0.4</title>
             <description><![CDATA[
                 <ul>

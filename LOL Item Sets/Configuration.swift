@@ -94,4 +94,14 @@ class Configuration {
         }
     }
     
+    var installedDate: NSDate? {
+        get {
+            return storage.objectForKey("installedDate") as? NSDate
+        }
+        
+        set {
+            storage.setObject(newValue, forKey: "installedDate")
+        }
+    }
+    
 }
