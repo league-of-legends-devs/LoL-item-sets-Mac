@@ -10,24 +10,27 @@ import Foundation
 import Cocoa
 
 class Util {
-    static func downloadUrl(_ url: URL, cbk: @escaping (Data?, HTTPURLResponse?, NSError?) -> Void) {
+    static func downloadUrl(_ url: URL, cbk: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
         let request = URLRequest.init(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 5)
         URLSession.shared.dataTask(with: request, completionHandler: { data, res, err in
             DispatchQueue.main.async(execute: { 
                 cbk(data, res as? HTTPURLResponse, err)
             })
-        }) .resume()
+            return
+        }).resume()
     }
 
-    static func downloadString(_ url: URL, cbk: @escaping (String?, HTTPURLResponse?, NSError?) -> Void) {
+    static func downloadString(_ url: URL, cbk: @escaping (String?, HTTPURLResponse?, Error?) -> Void) {
         downloadUrl(url) { data, res, err in
             if data != nil {
                 cbk(String(data: data!, encoding: String.Encoding.utf8)!, res, err)
+            } else {
+                cbk(nil, res, err)
             }
         }
     }
     
-    static func downloadString(_ url: String, cbk: @escaping (String?, HTTPURLResponse?, NSError?) -> Void) {
+    static func downloadString(_ url: String, cbk: @escaping (String?, HTTPURLResponse?, Error?) -> Void) {
         downloadString(URL(string: url)!, cbk: cbk)
     }
     
@@ -45,9 +48,9 @@ class Util {
         let fileManager = FileManager.default
         return fileManager.isWritableFile(atPath: path)
     }
-    
+
     static func createTempFile(_ fileName: String) -> (FileHandle, URL)? {
-        let base = URL.fileURL(withPathComponents: [NSTemporaryDirectory(), "XXXXXX.\(fileName)"])
+        let base = URL.init(fileURLWithPath: NSTemporaryDirectory() + "/XXXXXX.\(fileName)")
         var buffer = [Int8](repeating: 0, count: Int(PATH_MAX))
         (base as NSURL?)?.getFileSystemRepresentation(&buffer, maxLength: buffer.count)
         let fd = mkstemps(&buffer, fileName.lengthOfBytes(using: String.Encoding.utf8) + 1)
@@ -58,7 +61,7 @@ class Util {
         }
     }
     
-    static func showDialog(_ title: String, text: String, buttons: [String] = ["Ok", "Cancel"], icon: NSAlertStyle = NSAlertStyle.warning) -> UInt {
+    static func showDialog(withOptions title: String, text: String, buttons: [String] = ["Ok", "Cancel"], icon: NSAlertStyle = NSAlertStyle.warning) -> UInt {
         let dialog: NSAlert = NSAlert()
         dialog.messageText = title
         dialog.informativeText = text
@@ -76,6 +79,18 @@ class Util {
             return 3 + UInt(a - NSAlertThirdButtonReturn)
         }
         return 0
+    }
+    
+    static func showDialog(_ title: String, text: String, buttons: [String] = ["Ok", "Cancel"], icon: NSAlertStyle = NSAlertStyle.warning) {
+        let dialog: NSAlert = NSAlert()
+        dialog.messageText = title
+        dialog.informativeText = text
+        dialog.alertStyle = icon
+        for button in buttons {
+            dialog.addButton(withTitle: button)
+        }
+        
+        dialog.runModal()
     }
     
     static func fromJSON(_ json: String) -> [String: AnyObject]? {

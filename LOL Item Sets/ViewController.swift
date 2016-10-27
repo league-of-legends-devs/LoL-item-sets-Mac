@@ -63,7 +63,7 @@ class ViewController: NSViewController {
         }
     }
 
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         didSet {
             // Update the view, if already loaded.
         }
@@ -87,7 +87,7 @@ class ViewController: NSViewController {
                     let splitted = files[0].components(separatedBy: " ")
                     let versionDetected = Configuration.Version(fromString: splitted[0])
                     if versionDetected.compare(Configuration.instance.installedVersion) != 0 {
-                        let p = Util.showDialog("Installed versions mismatch", text: "You have installed another version of the items " +
+                        let p = Util.showDialog(withOptions: "Installed versions mismatch", text: "You have installed another version of the items " +
                             " that mismatch the installed with the app. Is that version correct? \(splitted[0])" +
                             ".\nIf it not, then the app will overwrite the contents of the item sets with the current", buttons: ["Yes", "No"], icon: NSAlertStyle.warning)
                         if p == 2 {
@@ -108,8 +108,9 @@ class ViewController: NSViewController {
     fileprivate func checkServerVersion() {
         Util.downloadString("\(webBase)/api/patch") { (data, res, err) in
             if err != nil {
+                let e = (err as? URLError);
                 Util.showDialog("Error getting latest version", text: "There was an internal error while we were getting"
-                    + " the latest version.\n\(err!.description)")
+                    + " the latest version.\n\(e!.localizedDescription)")
             } else if(res!.statusCode / 100 >= 4) {
                 Util.showDialog("Error getting latest version", text: "The server responded with an error when we were "
                     + "getting the latest version")
@@ -142,7 +143,8 @@ class ViewController: NSViewController {
     fileprivate func getNews() {
         Util.downloadString("\(webBase)/api/news") { (data, res, err) in
             if err != nil {
-                Util.showDialog("Cannot retrieve news", text: "There was an internal error while we were getting that news")
+                let e = (err as? URLError);
+                Util.showDialog("Cannot retrieve news", text: "There was an internal error while we were getting that news\n\(e!.localizedDescription)")
             } else if(res!.statusCode / 100 >= 4) {
                 Util.showDialog("Cannot retrieve news", text: "The server responded with an error while we were getting the news")
             } else {
@@ -205,7 +207,7 @@ class ViewController: NSViewController {
                             " inside and put the builds for you", buttons: ["Ok"])
                     }
                 } else {
-                    if Util.showDialog("App is not League Of Legends", text: "The app seems not to be League of Legends. Select another app") == 1 {
+                    if Util.showDialog(withOptions: "App is not League Of Legends", text: "The app seems not to be League of Legends. Select another app") == 1 {
                         changeLolPath(sender)
                     }
                 }
@@ -223,9 +225,9 @@ class ViewController: NSViewController {
         //Download the zip file
         Util.downloadUrl(URL(string: "\(webBase)/downloads/sets-from-app")!) { (data, res, err) in
             if err != nil {
+                let e = (err as? URLError);
                 Util.showDialog("Error getting items", text: "There was an internal error while we were getting"
-                    + " the items.\n\(err!.description)")
-                print("[installItemSets:85] \(err!)")
+                    + " the items.\n\(e!.localizedDescription)")
                 self.installSets.isEnabled = true
             } else if res!.statusCode / 100 >= 4 {
                 Util.showDialog("Error getting latest version", text: "The server responded with an error while "
