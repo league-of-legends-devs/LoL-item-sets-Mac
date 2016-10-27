@@ -9,12 +9,12 @@
 import Foundation
 
 class Configuration {
-    private static var _instance: Configuration?
-    private let storage: NSUserDefaults
+    fileprivate static var _instance: Configuration?
+    fileprivate let storage: UserDefaults
 
-    private init() {
-        storage = NSUserDefaults.standardUserDefaults()
-        storage.registerDefaults([
+    fileprivate init() {
+        storage = UserDefaults.standard
+        storage.register(defaults: [
             "installedVersion": "0.0.0",
             "autoCheck": true
         ])
@@ -41,13 +41,13 @@ class Configuration {
         }
         
         init(fromString string: String) {
-            let splitted = string.componentsSeparatedByString(".")
+            let splitted = string.components(separatedBy: ".")
             major = UInt(splitted[0])!
             minor = UInt(splitted[1])!
             patch = UInt(splitted[2])!
         }
         
-        func compare(other: Version) -> Int {
+        func compare(_ other: Version) -> Int {
             if major > other.major {
                 return 1
             } else if major < other.major {
@@ -76,31 +76,31 @@ class Configuration {
     
     var installedVersion: Version {
         get {
-            return Version(fromString: storage.stringForKey("installedVersion")!)
+            return Version(fromString: storage.string(forKey: "installedVersion")!)
         }
         
         set {
-            storage.setObject(newValue.toString(), forKey: "installedVersion")
+            storage.set(newValue.toString(), forKey: "installedVersion")
         }
     }
     
     var autoCheck: Bool {
         get {
-            return storage.boolForKey("autoCheck")
+            return storage.bool(forKey: "autoCheck")
         }
         
         set {
-            storage.setBool(newValue, forKey: "autoCheck")
+            storage.set(newValue, forKey: "autoCheck")
         }
     }
     
-    var installedDate: NSDate? {
+    var installedDate: Date? {
         get {
-            return storage.objectForKey("installedDate") as? NSDate
+            return storage.object(forKey: "installedDate") as? Date
         }
         
         set {
-            storage.setObject(newValue, forKey: "installedDate")
+            storage.set(newValue, forKey: "installedDate")
         }
     }
     

@@ -13,6 +13,6 @@ class WindowDelegate : NSObject, NSWindowDelegate {
     
     override init() {
         super.init()
-        (NSApplication.sharedApplication().delegate as! AppDelegate).mainWindowDelegateDidLoad(self)
+        (NSApplication.shared().delegate as! AppDelegate).mainWindowDelegateDidLoad(self)
     }
 }

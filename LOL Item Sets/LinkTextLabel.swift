@@ -9,8 +9,8 @@
 import Cocoa
 
 class LinkTextLabel : NSTextField {
-    private var url: NSURL?
-    private var trackingArea: NSTrackingArea?
+    fileprivate var url: Foundation.URL?
+    fileprivate var trackingArea: NSTrackingArea?
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -22,11 +22,11 @@ class LinkTextLabel : NSTextField {
         constr()
     }
     
-    private func constr() {
+    fileprivate func constr() {
         let frameRect = NSMakeRect(0, 0, frame.width, frame.height)
         self.allowsEditingTextAttributes = true
-        self.selectable = false
-        let op = NSTrackingAreaOptions.MouseEnteredAndExited.union(.MouseMoved).union(.ActiveInKeyWindow)
+        self.isSelectable = false
+        let op = NSTrackingAreaOptions.mouseEnteredAndExited.union(.mouseMoved).union(.activeInKeyWindow)
         trackingArea = NSTrackingArea(rect: frameRect, options: op, owner: self, userInfo: nil)
         addTrackingArea(trackingArea!)
     }
@@ -36,18 +36,18 @@ class LinkTextLabel : NSTextField {
         set {
             let attrStr = NSMutableAttributedString(string: self.stringValue)
             if newValue != nil {
-                self.url = NSURL(string: newValue!)
+                self.url = Foundation.URL(string: newValue!)
                 let range = NSMakeRange(0, self.stringValue.characters.count)
                 attrStr.beginEditing()
                 attrStr.addAttribute(NSLinkAttributeName, value: url!, range: range)
-                attrStr.addAttribute(NSForegroundColorAttributeName, value: NSColor.blueColor(), range: range)
-                attrStr.addAttribute(NSUnderlineStyleAttributeName, value: NSNumber(int: 1), range: range)
+                attrStr.addAttribute(NSForegroundColorAttributeName, value: NSColor.blue, range: range)
+                attrStr.addAttribute(NSUnderlineStyleAttributeName, value: NSNumber(value: 1 as Int32), range: range)
                 attrStr.endEditing()
             } else {
                 url = nil
             }
             
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.attributedStringValue = attrStr
             }
         }
@@ -57,21 +57,21 @@ class LinkTextLabel : NSTextField {
         }
     }
     
-    override func mouseEntered(theEvent: NSEvent) {
-        super.mouseEntered(theEvent)
-        NSCursor.pointingHandCursor().push()
-        NSCursor.pointingHandCursor().set()
+    override func mouseEntered(with theEvent: NSEvent) {
+        super.mouseEntered(with: theEvent)
+        NSCursor.pointingHand().push()
+        NSCursor.pointingHand().set()
     }
     
-    override func mouseExited(theEvent: NSEvent) {
-        super.mouseExited(theEvent)
-        NSCursor.pointingHandCursor().pop()
+    override func mouseExited(with theEvent: NSEvent) {
+        super.mouseExited(with: theEvent)
+        NSCursor.pointingHand().pop()
     }
     
-    override func mouseUp(theEvent: NSEvent) {
-        super.mouseUp(theEvent)
+    override func mouseUp(with theEvent: NSEvent) {
+        super.mouseUp(with: theEvent)
         if url != nil {
-            NSWorkspace.sharedWorkspace().openURL(url!)
+            NSWorkspace.shared().open(url!)
         }
     }
     
@@ -80,7 +80,7 @@ class LinkTextLabel : NSTextField {
         removeTrackingArea(trackingArea!)
         
         let frameRect = NSMakeRect(0, 0, frame.width, frame.height)
-        let op = NSTrackingAreaOptions.MouseEnteredAndExited.union(.MouseMoved).union(.ActiveInKeyWindow)
+        let op = NSTrackingAreaOptions.mouseEnteredAndExited.union(.mouseMoved).union(.activeInKeyWindow)
         trackingArea = NSTrackingArea(rect: frameRect, options: op, owner: self, userInfo: nil)
         addTrackingArea(trackingArea!)
     }

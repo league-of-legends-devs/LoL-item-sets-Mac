@@ -10,17 +10,17 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    private var mainWindow: WindowDelegate?
+    fileprivate var mainWindow: WindowDelegate?
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
     
-    func applicationShouldHandleReopen(sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         //NSApplication.sharedApplication().unhide(self)
         if flag {
             mainWindow?.window.orderFront(self)
@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
     
-    func mainWindowDelegateDidLoad(sender: WindowDelegate) {
+    func mainWindowDelegateDidLoad(_ sender: WindowDelegate) {
         mainWindow = sender
     }
 
