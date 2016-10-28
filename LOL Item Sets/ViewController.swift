@@ -96,7 +96,7 @@ class ViewController: NSViewController {
                         }
                     }
                 } catch {
-                    Util.showDialog("Error when reading", text: "Could not read LoL contents. Check if you have permissions to read the app.");
+                    Util.showDialog("Error when reading", text: "Could not read LoL contents. Check if you have permissions to read the app.", buttons: ["Ok"]);
                 }
             } else {
                 //If the folder doesn't exists, then the folder was deleted
@@ -111,10 +111,10 @@ class ViewController: NSViewController {
             if err != nil {
                 let e = (err as? URLError);
                 Util.showDialog("Error getting latest version", text: "There was an internal error while we were getting"
-                    + " the latest version.\n\(e!.localizedDescription)")
+                    + " the latest version.\n\(e!.localizedDescription)", buttons: ["Ok"])
             } else if(res!.statusCode / 100 >= 4) {
                 Util.showDialog("Error getting latest version", text: "The server responded with an error when we were "
-                    + "getting the latest version")
+                    + "getting the latest version", buttons: ["Ok"])
             } else {
                 //Deserialize JSON
                 let obj = Util.fromJSON(data!)
@@ -135,7 +135,7 @@ class ViewController: NSViewController {
                     let genDate = Util.fromJSONDate(obj!["generationDate"]! as! String)
                     self.generatedLabel.stringValue = "Generated \(genDate!.dateStr)"
                 } else {
-                    Util.showDialog("Error getting latest version", text: "The server responded with an invalid data")
+                    Util.showDialog("Error getting latest version", text: "The server responded with an invalid data", buttons: ["Ok"])
                 }
             }
         }
@@ -145,9 +145,9 @@ class ViewController: NSViewController {
         Util.downloadString("\(webBase)/api/news") { (data, res, err) in
             if err != nil {
                 let e = (err as? URLError);
-                Util.showDialog("Cannot retrieve news", text: "There was an internal error while we were getting that news\n\(e!.localizedDescription)")
+                Util.showDialog("Cannot retrieve news", text: "There was an internal error while we were getting that news\n\(e!.localizedDescription)", buttons: ["Ok"])
             } else if(res!.statusCode / 100 >= 4) {
-                Util.showDialog("Cannot retrieve news", text: "The server responded with an error while we were getting the news")
+                Util.showDialog("Cannot retrieve news", text: "The server responded with an error while we were getting the news", buttons: ["Ok"])
             } else {
                 //Deserialize JSON
                 let obj = Util.fromJSON(data!)
@@ -184,7 +184,7 @@ class ViewController: NSViewController {
                 }
             }
         } catch {
-            Util.showDialog("Error when removing", text: "Could not remove old items. Check if you have permissions to read and write the app.");
+            Util.showDialog("Error when removing", text: "Could not remove old items. Check if you have permissions to read and write the app.", buttons: ["Ok"]);
         }
     }
 
@@ -230,11 +230,11 @@ class ViewController: NSViewController {
             if err != nil {
                 let e = (err as? URLError);
                 Util.showDialog("Error getting items", text: "There was an internal error while we were getting"
-                    + " the items.\n\(e!.localizedDescription)")
+                    + " the items.\n\(e!.localizedDescription)", buttons: ["Ok"])
                 self.installSets.isEnabled = true
             } else if res!.statusCode / 100 >= 4 {
                 Util.showDialog("Error getting latest version", text: "The server responded with an error while "
-                    + "we were getting the items.");
+                    + "we were getting the items.", buttons: ["Ok"]);
                 self.installSets.isEnabled = true
             } else {
                 do {
@@ -266,8 +266,8 @@ class ViewController: NSViewController {
                     self.installedLabel.stringValue = "Installed \(Date().dateStr)"
                     self.installedLabel.isHidden = false
                 } catch(let e) {
-                    Util.showDialog("Error getting items", text: "There was an internal error while we were erxtracting"
-                        + " the items.\n\(e)")
+                    Util.showDialog("Error getting items", text: "There was an internal error while we were extracting"
+                        + " the items.\n\(e)", buttons: ["Ok"])
                     print("[installItemSets:96] \(e)")
                     self.installSets.isEnabled = true
                 }
