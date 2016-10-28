@@ -25,6 +25,7 @@ class ViewController: NSViewController {
     fileprivate var timer: Timer?
     fileprivate var awakeFromNibExecuted = false
     fileprivate let webBase = "https://lol-item-sets-generator.org"
+    fileprivate let itemsPathBase = "Contents/LoL/Config/Champions"
 
     @available(OSX 10.10, *)
     override func viewDidLoad() {
@@ -81,9 +82,9 @@ class ViewController: NSViewController {
             //If we know there's something installed, then we check if the
             //item sets are in the same version that we have installed before
             let path = pathControl.url!.path
-            if Util.exists("\(path)/Contents/LoL/Config/ItemSets") {
+            if Util.exists("\(path)/\(itemsPathBase)") && Util.exists("\(path)/\(itemsPathBase)/Aatrox/Recommended/") {
                 do {
-                    let files = try FileManager.default.contentsOfDirectory(atPath: "\(path)/Contents/LoL/Config/ItemSets/Aatrox/Recommended")
+                    let files = try FileManager.default.contentsOfDirectory(atPath: "\(path)/\(itemsPathBase)/Aatrox/Recommended")
                     let splitted = files[0].components(separatedBy: " ")
                     let versionDetected = Configuration.Version(fromString: splitted[0])
                     if versionDetected.compare(Configuration.instance.installedVersion) != 0 {
@@ -170,13 +171,15 @@ class ViewController: NSViewController {
             print("Removing old items")
             let path = pathControl.url!.path
             let verStr = version.toString()
-            let champs = try FileManager.default.contentsOfDirectory(atPath: "\(path)/Contents/LoL/Config/ItemSets/");
+            let champs = try FileManager.default.contentsOfDirectory(atPath: "\(path)/\(itemsPathBase)/")
             for champ in champs {
-                let items = try FileManager.default.contentsOfDirectory(atPath: "\(path)/Contents/LoL/Config/ItemSets/\(champ)/Recommended/")
-                for item in items {
-                    if !item.contains(verStr) {
-                        _ = try? FileManager.default.removeItem(atPath: "\(path)/Contents/LoL/Config/ItemSets/\(champ)/Recommended/\(item)")
-                        print("Removed \(path)/Contents/LoL/Config/ItemSets/\(champ)/Recommended/\(item)")
+                if champ != "ItemSets" {
+                    let items = try FileManager.default.contentsOfDirectory(atPath: "\(path)/\(itemsPathBase)/\(champ)/Recommended/")
+                    for item in items {
+                        if !item.contains(verStr) {
+                            _ = try? FileManager.default.removeItem(atPath: "\(path)/\(itemsPathBase)/\(champ)/Recommended/\(item)")
+                            print("Removed \(path)/\(itemsPathBase)/\(champ)/Recommended/\(item)")
+                        }
                     }
                 }
             }
@@ -199,8 +202,8 @@ class ViewController: NSViewController {
         if url != nil {
             let path = fileDialog.url!.path
             if Util.canBeRead(path) {
-                if Util.exists("\(path)/Contents/LoL/Config") {
-                    if Util.canBeRead("\(path)/Contents/LoL/Config") && Util.canBeWritten("\(path)/Contents/LoL/Config") {
+                if Util.exists("\(path)/\(itemsPathBase)/../") {
+                    if Util.canBeRead("\(path)/\(itemsPathBase)/../") && Util.canBeWritten("\(path)/\(itemsPathBase)/../") {
                         pathControl.url = url
                     } else {
                         Util.showDialog("League Of Legends contents cannot be written", text: "We need (and also you) write permissions to the LoL contents to write" +
@@ -237,10 +240,23 @@ class ViewController: NSViewController {
                 do {
                     try data!.write(to: tempFile!.1, options: NSData.WritingOptions(rawValue: 0))
                     //UNZIP IT
-                    let lolPath = self.pathControl.url?.appendingPathComponent("Contents/LoL/Config", isDirectory: true)
+                    let lolPath = self.pathControl.url?.appendingPathComponent(self.itemsPathBase, isDirectory: true)
                     try Zip.unzipFile(tempFile!.1, destination: lolPath!, overwrite: true, password: nil, progress: { (progress) in
                         //TODO
                     })
+                    
+                    //Move items to its correct place
+                    do {
+                        let fs = FileManager.default
+                        let path = self.pathControl.url!.path
+                        let champs = try FileManager.default.contentsOfDirectory(atPath: "\(path)/\(self.itemsPathBase)/ItemSets/")
+                        for champ in champs {
+                            try fs.moveItem(atPath: "\(path)/\(self.itemsPathBase)/ItemSets/\(champ)", toPath: "\(path)/\(self.itemsPathBase)/\(champ)")
+                        }
+                    } catch {
+                        print("this shouldn't have occurred")
+                    }
+                    
                     NSApplication.shared().dockTile.showsApplicationBadge = false
                     Configuration.instance.installedVersion = self.currentVersion!
                     self.installedPatch.stringValue = "Installed Patch: \(Configuration.instance.installedVersion.toString())"
