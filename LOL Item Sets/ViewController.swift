@@ -102,6 +102,7 @@ class ViewController: NSViewController {
                 //If the folder doesn't exists, then the folder was deleted
                 Configuration.instance.installedVersion = Configuration.Version(major: 0, minor: 0, patch: 0)
                 installedPatch.stringValue = "Installed Patch: 0.0.0"
+                Configuration.instance.installedDate = nil
             }
         }
     }
