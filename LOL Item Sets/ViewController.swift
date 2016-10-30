@@ -175,7 +175,7 @@ class ViewController: NSViewController {
     
     fileprivate func deleteOldItems(_ version: Configuration.Version) {
         do {
-            print("Removing old items")
+            print("Removing old items, version \(version.toString())")
             let path = pathControl.url!.path
             let verStr = version.toString()
             let champs = try FileManager.default.contentsOfDirectory(atPath: "\(path)/\(itemsPathBase)/")
@@ -183,7 +183,7 @@ class ViewController: NSViewController {
                 if champ != "ItemSets" {
                     let items = try FileManager.default.contentsOfDirectory(atPath: "\(path)/\(itemsPathBase)/\(champ)/Recommended/")
                     for item in items {
-                        if !item.contains(verStr) {
+                        if item.contains(verStr) {
                             _ = try? FileManager.default.removeItem(atPath: "\(path)/\(itemsPathBase)/\(champ)/Recommended/\(item)")
                             print("Removed \(path)/\(itemsPathBase)/\(champ)/Recommended/\(item)")
                         }
@@ -297,7 +297,7 @@ class ViewController: NSViewController {
                     Configuration.instance.lastInstalledVersion = Configuration.instance.installedVersion
                     Configuration.instance.installedVersion = self.currentVersion!
                     self.installedPatch.stringValue = "Installed Patch: \(Configuration.instance.installedVersion.toString())"
-                    self.deleteOldItems(self.currentVersion!)
+                    self.deleteOldItems(Configuration.instance.lastInstalledVersion)
 
                     Configuration.instance.installedDate = Date()
                     self.installedLabel.stringValue = "Installed \(Date().dateStr)"
