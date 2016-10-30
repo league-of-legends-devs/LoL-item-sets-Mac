@@ -92,10 +92,10 @@ class ViewController: NSViewController {
     }
     
     fileprivate func checkInstalledFiles() {
+        let path = pathControl.url!.path
         if Configuration.instance.installedVersion.toString() != "0.0.0" {
             //If we know there's something installed, then we check if the
             //item sets are in the same version that we have installed before
-            let path = pathControl.url!.path
             if Util.exists("\(path)/\(itemsPathBase)") && Util.exists("\(path)/\(itemsPathBase)/Aatrox/Recommended/") {
                 do {
                     let files = try FileManager.default.contentsOfDirectory(atPath: "\(path)/\(itemsPathBase)/Aatrox/Recommended")
@@ -125,6 +125,13 @@ class ViewController: NSViewController {
             installedPatch.stringValue = "Installed Patch: 0.0.0"
             installedLabel.isHidden = true
             Configuration.instance.installedDate = nil
+        }
+
+        if Util.exists("\(path)/\(itemsPathBase)") && (!Util.canBeRead("\(path)/\(itemsPathBase)") || !Util.canBeWritten("\(path)/\(itemsPathBase)")) {
+            let p = Util.showDialog(withOptions: "Ensure permissions", text: "Could not read or write LoL Champions item sets. Check for permissions", buttons: ["Ok", "See more"])
+            if p == 2 {
+                NSWorkspace.shared().open(URL(string: "https://github.com/Ilshidur/LoL-item-sets-Mac/wiki/Fix-permissions-in-the-Item-Sets-folders-of-the-League-of-Legends-game")!)
+            }
         }
     }
     
@@ -269,6 +276,7 @@ class ViewController: NSViewController {
                         //TODO
                     })
                     
+                    var hadErrors = false //moving files
                     //Move items to its correct place
                     //Permissions are set to octal 0777 (aka u+rwx g+rwx a+rwx) in hex 0x1FF
                     do {
@@ -294,12 +302,19 @@ class ViewController: NSViewController {
                                     print(e)
                                 }
                             }
-                            
+
                             for file in files {
-                                //Movement is done file by file, to avoid deleting other files in the destination folder
-                                try fs.moveItem(atPath: "\(origin)/\(file)", toPath: "\(destination)/\(file)")
-                                print("Moved '\(origin)/\(file)' to '\(destination)/\(file)'")
-                                try fs.setAttributes([FileAttributeKey.posixPermissions: 0x1FF], ofItemAtPath: "\(destination)/\(file)")
+                                do {
+                                    //Movement is done file by file, to avoid deleting other files in the destination folder
+                                    //or at least try it
+                                    try fs.moveItem(atPath: "\(origin)/\(file)", toPath: "\(destination)/\(file)")
+                                    print("Moved '\(origin)/\(file)' to '\(destination)/\(file)'")
+                                    try fs.setAttributes([FileAttributeKey.posixPermissions: 0x1FF], ofItemAtPath: "\(destination)/\(file)")
+                                } catch let e {
+                                    print("Could not move '\(origin)/\(file)' to '\(destination)/\(file)'")
+                                    print(e)
+                                    hadErrors = true
+                                }
                             }
                         }
                         
@@ -319,6 +334,17 @@ class ViewController: NSViewController {
                     Configuration.instance.installedDate = Date()
                     self.installedLabel.stringValue = "Installed \(Date().dateStr)"
                     self.installedLabel.isHidden = false
+                    
+                    if hadErrors {
+                        let p = Util.showDialog(withOptions: "Installing item sets had errors", text: "When installing the item sets, we found some" +
+                            " errors, probably due to invalid permissions. Check the permissions on \"\(self.pathControl.url!.path)" +
+                            "/\(self.itemsPathBase)\" and its subfolders, delete all items installed using the app's menu option " +
+                            "and reinstall the sets.\nSee https://github.com/Ilshidur/LoL-item-sets-Mac/wiki/Fix-permissions-in-" +
+                            "the-Item-Sets-folders-of-the-League-of-Legends-game for more help.", buttons: ["Ok", "See more"])
+                        if p == 2 {
+                            NSWorkspace.shared().open(URL(string: "https://github.com/Ilshidur/LoL-item-sets-Mac/wiki/Fix-permissions-in-the-Item-Sets-folders-of-the-League-of-Legends-game")!)
+                        }
+                    }
                 } catch(let e) {
                     Util.showDialog("Error getting items", text: "There was an internal error while we were extracting"
                         + " the items.\n\(e)", buttons: ["Ok"])
