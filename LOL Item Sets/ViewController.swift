@@ -62,6 +62,10 @@ class ViewController: NSViewController {
         } else {
             installedLabel.isHidden = true
         }
+        
+        if #available(OSX 10.10, *) {} else {
+            (NSApplication.shared().delegate as! AppDelegate).mainViewController = self
+        }
     }
 
     override var representedObject: Any? {
@@ -75,6 +79,16 @@ class ViewController: NSViewController {
             checkServerVersion();
         }
         getNews()
+    }
+    
+    func deleteInstalledFiles() {
+        Configuration.instance.lastInstalledVersion = Configuration.instance.installedVersion
+        deleteOldItems(Configuration.instance.installedVersion)
+        Configuration.instance.installedDate = nil
+        Configuration.instance.installedVersion = Configuration.Version(major: 0, minor: 0, patch: 0)
+        installedPatch.stringValue = "Installed Patch: 0.0.0"
+        installSets.isEnabled = true
+        Util.showDialog("Item sets", text: "Installed items sets have been deleted", buttons: ["Ok"], icon: .informational)
     }
     
     fileprivate func checkInstalledFiles() {

@@ -11,6 +11,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     fileprivate var mainWindow: WindowDelegate?
+    var mainViewController: ViewController? = nil
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -34,5 +35,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         mainWindow = sender
     }
 
+    @IBAction func deleteInstalledItemSets(_ sender: NSMenuItem) {
+        let viewCtrl: ViewController
+        if #available(OSX 10.10, *) {
+            viewCtrl = mainWindow?.window.contentViewController as! ViewController
+        } else {
+            viewCtrl = mainViewController!
+        }
+
+        viewCtrl.deleteInstalledFiles()
+    }
 }
 
