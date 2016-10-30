@@ -85,25 +85,29 @@ class ViewController: NSViewController {
             if Util.exists("\(path)/\(itemsPathBase)") && Util.exists("\(path)/\(itemsPathBase)/Aatrox/Recommended/") {
                 do {
                     let files = try FileManager.default.contentsOfDirectory(atPath: "\(path)/\(itemsPathBase)/Aatrox/Recommended")
-                    let splitted = files[0].components(separatedBy: " ")
-                    let versionDetected = Configuration.Version(fromString: splitted[0])
-                    if versionDetected.compare(Configuration.instance.installedVersion) != 0 {
-                        let p = Util.showDialog(withOptions: "Installed versions mismatch", text: "You have installed another version of the items " +
-                            " that mismatch the installed with the app. Is that version correct? \(splitted[0])" +
-                            ".\nIf it not, then the app will overwrite the contents of the item sets with the current", buttons: ["Yes", "No"], icon: NSAlertStyle.warning)
-                        if p == 2 {
-                            installItemSets(installSets)
+                    for file in files {
+                        let splitted = file.components(separatedBy: " ")
+                        let versionDetected = Configuration.Version(fromString: splitted[0])
+                        if versionDetected != nil && versionDetected!.compare(Configuration.instance.installedVersion) != 0 {
+                            let p = Util.showDialog(withOptions: "Installed versions mismatch", text: "You have installed another version of the items " +
+                                " that mismatch the installed with the app. Is that version correct? \(splitted[0])" +
+                                ".\nIf it not, then the app will overwrite the contents of the item sets with the current", buttons: ["Yes", "No"], icon: NSAlertStyle.warning)
+                            if p == 2 {
+                                Configuration.instance.installedVersion = Configuration.Version(fromString: splitted[0])!
+                                installItemSets(installSets)
+                            }
+                            return
                         }
                     }
                 } catch {
-                    Util.showDialog("Error when reading", text: "Could not read LoL contents. Check if you have permissions to read the app.", buttons: ["Ok"]);
+                    Util.showDialog("Error when reading", text: "Could not read LoL contents. Check if you have permissions to read the game.", buttons: ["Ok"]);
                 }
-            } else {
-                //If the folder doesn't exists, then the folder was deleted
-                Configuration.instance.installedVersion = Configuration.Version(major: 0, minor: 0, patch: 0)
-                installedPatch.stringValue = "Installed Patch: 0.0.0"
-                Configuration.instance.installedDate = nil
             }
+
+            //Path of item sets doesn't exist, or we couldn't found files for the item sets
+            Configuration.instance.installedVersion = Configuration.Version(major: 0, minor: 0, patch: 0)
+            installedPatch.stringValue = "Installed Patch: 0.0.0"
+            Configuration.instance.installedDate = nil
         }
     }
     
@@ -126,10 +130,12 @@ class ViewController: NSViewController {
                     self.currentVersion = fetchedVersion
 
                     //If version mismatch the installed, then there's an update
-                    if fetchedVersion.compare(Configuration.instance.installedVersion) != 0 {
+                    if fetchedVersion?.compare(Configuration.instance.installedVersion) != 0 {
                         self.installSets.isEnabled = true
                         NSApplication.shared().dockTile.showsApplicationBadge = true
                         NSApplication.shared().dockTile.badgeLabel = "New Set"
+                    } else {
+                        Util.showDialog("Error getting latest version", text: "The server responded with invalid information", buttons: ["Ok"])
                     }
                     
                     //Generation date

@@ -40,11 +40,23 @@ class Configuration {
             self.patch = patch
         }
         
-        init(fromString string: String) {
+        init?(fromString string: String) {
             let splitted = string.components(separatedBy: ".")
-            major = UInt(splitted[0])!
-            minor = UInt(splitted[1])!
-            patch = UInt(splitted[2])!
+            if splitted.count != 3 {
+                return nil
+            }
+            
+            let major = UInt(splitted[0])
+            let minor = UInt(splitted[1])
+            let patch = UInt(splitted[2])
+            
+            if major == nil || minor == nil || patch == nil {
+                return nil
+            } else {
+                self.major = major!
+                self.minor = minor!
+                self.patch = patch!
+            }
         }
         
         func compare(_ other: Version) -> Int {
@@ -76,7 +88,7 @@ class Configuration {
     
     var installedVersion: Version {
         get {
-            return Version(fromString: storage.string(forKey: "installedVersion")!)
+            return Version(fromString: storage.string(forKey: "installedVersion")!)!
         }
         
         set {
@@ -101,6 +113,16 @@ class Configuration {
         
         set {
             storage.set(newValue, forKey: "installedDate")
+        }
+    }
+    
+    var lastInstalledVersion: Version {
+        get {
+            return Version(fromString: storage.string(forKey: "lastInstalledVersion")!)!
+        }
+        
+        set {
+            storage.set(newValue.toString(), forKey: "lastInstalledVersion")
         }
     }
     
