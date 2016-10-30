@@ -111,6 +111,8 @@ class ViewController: NSViewController {
                                 installItemSets(installSets)
                             }
                             return
+                        } else if versionDetected != nil && versionDetected!.compare(Configuration.instance.installedVersion) == 0 {
+                            return
                         }
                     }
                 } catch {
@@ -121,6 +123,7 @@ class ViewController: NSViewController {
             //Path of item sets doesn't exist, or we couldn't found files for the item sets
             Configuration.instance.installedVersion = Configuration.Version(major: 0, minor: 0, patch: 0)
             installedPatch.stringValue = "Installed Patch: 0.0.0"
+            installedLabel.isHidden = true
             Configuration.instance.installedDate = nil
         }
     }
@@ -148,7 +151,7 @@ class ViewController: NSViewController {
                         self.installSets.isEnabled = true
                         NSApplication.shared().dockTile.showsApplicationBadge = true
                         NSApplication.shared().dockTile.badgeLabel = "New Set"
-                    } else {
+                    } else if fetchedVersion == nil {
                         Util.showDialog("Error getting latest version", text: "The server responded with invalid information", buttons: ["Ok"])
                     }
                     
