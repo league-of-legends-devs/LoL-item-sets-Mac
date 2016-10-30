@@ -253,18 +253,48 @@ class ViewController: NSViewController {
                     })
                     
                     //Move items to its correct place
+                    //Permissions are set to octal 0777 (aka u+rwx g+rwx a+rwx) in hex 0x1FF
                     do {
                         let fs = FileManager.default
                         let path = self.pathControl.url!.path
                         let champs = try FileManager.default.contentsOfDirectory(atPath: "\(path)/\(self.itemsPathBase)/ItemSets/")
                         for champ in champs {
-                            try fs.moveItem(atPath: "\(path)/\(self.itemsPathBase)/ItemSets/\(champ)", toPath: "\(path)/\(self.itemsPathBase)/\(champ)")
+                            let origin = "\(path)/\(self.itemsPathBase)/ItemSets/\(champ)/Recommended"
+                            let destination = "\(path)/\(self.itemsPathBase)/\(champ)/Recommended"
+                            let files = try FileManager.default.contentsOfDirectory(atPath: "\(origin)")
+
+                            if !Util.exists(destination) {
+                                //If the destination folder (or any intermediate) doesn't exist, we need to create it
+                                try FileManager.default.createDirectory(atPath: destination, withIntermediateDirectories: true, attributes: [FileAttributeKey.posixPermissions.rawValue: 0x1FF])
+                                print("Created directory \(destination)")
+                            } else {
+                                //Ensure that the destination folders has the correct permissions
+                                do {
+                                    try fs.setAttributes([FileAttributeKey.posixPermissions: 0x1FF], ofItemAtPath: "\(path)/\(self.itemsPathBase)/\(champ)")
+                                    try fs.setAttributes([FileAttributeKey.posixPermissions: 0x1FF], ofItemAtPath: destination)
+                                } catch let e {
+                                    print("Could not set permissions for folder \(destination), this could lead into an error")
+                                    print(e)
+                                }
+                            }
+                            
+                            for file in files {
+                                //Movement is done file by file, to avoid deleting other files in the destination folder
+                                try fs.moveItem(atPath: "\(origin)/\(file)", toPath: "\(destination)/\(file)")
+                                print("Moved '\(origin)/\(file)' to '\(destination)/\(file)'")
+                                try fs.setAttributes([FileAttributeKey.posixPermissions: 0x1FF], ofItemAtPath: "\(destination)/\(file)")
+                            }
                         }
+                        
+                        //Here we remove the temporary folder, to avoid problems with LoL game
+                        try FileManager.default.removeItem(atPath: "\(path)/\(self.itemsPathBase)/ItemSets/")
+                        print("Deleted temporary folder \(path)/\(self.itemsPathBase)/ItemSets/")
                     } catch {
-                        print("this shouldn't have occurred")
+                        print("this shouldn't have occurred, we checked permissions")
                     }
-                    
+
                     NSApplication.shared().dockTile.showsApplicationBadge = false
+                    Configuration.instance.lastInstalledVersion = Configuration.instance.installedVersion
                     Configuration.instance.installedVersion = self.currentVersion!
                     self.installedPatch.stringValue = "Installed Patch: \(Configuration.instance.installedVersion.toString())"
                     self.deleteOldItems(self.currentVersion!)
