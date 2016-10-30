@@ -7,6 +7,26 @@
         <language>en</language>
         
         <item>
+            <title>Version 0.5.2</title>
+            <description><![CDATA[
+                <ul>
+                <li>Fixed crash when inside item sets folders there are other files (#3)</li>
+                <li>Installation of item sets now sets correct permissions for the files</li>
+                <li>Deleting old item sets only delete these files, not other ones created either by the user or by another app</li>
+                <li>Now you can delete installed item sets with an option in the menu "LOL Item Sets"</li>
+                </ul>
+            ]]>
+            </description>
+            <pubDate>Sun, 30 Oct 2016 12:00:00 +0000</pubDate>
+            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.5.2/lol-item-sets-0.5.2.zip"
+            sparkle:version="7"
+            sparkle:shortVersionString="0.5.2"
+            sparkle:dsaSignature="MCwCFBOY9z5IHlQNa5z9Douml2mIyrQHAhRoJwON2fDh0HDayvDGk3eK5uP4BQ=="
+            length="3577616"
+            type="application/octet-stream" />
+        </item>
+        
+        <item>
             <title>Version 0.5.1</title>
             <description><![CDATA[
                 <ul>
