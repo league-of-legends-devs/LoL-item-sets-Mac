@@ -18,6 +18,10 @@
 		48102C521D4110A200D7998E /* Zip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48102C501D4110A200D7998E /* Zip.framework */; };
 		48102C541D4169FA00D7998E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 48102C4F1D4110A200D7998E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		48102C551D4169FA00D7998E /* Zip.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 48102C501D4110A200D7998E /* Zip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		485ECBD01EA7BEA30001F2B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485ECBCF1EA7BEA30001F2B9 /* AppDelegate.swift */; };
+		485ECBD41EA7BEA30001F2B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 485ECBD31EA7BEA30001F2B9 /* Assets.xcassets */; };
+		485ECBDD1EA7BF3B0001F2B9 /* LOL Item Sets Launcher Helper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 485ECBCD1EA7BEA30001F2B9 /* LOL Item Sets Launcher Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		485ECBE01EA7BF630001F2B9 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 485ECBDF1EA7BF630001F2B9 /* ServiceManagement.framework */; };
 		48865FF71D422397000731FB /* LinkTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48865FF61D422397000731FB /* LinkTextLabel.swift */; };
 		48DE6F991D4A053300244C02 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 48DE6F981D4A053300244C02 /* dsa_pub.pem */; };
 /* End PBXBuildFile section */
@@ -31,6 +35,16 @@
 			files = (
 				48102C541D4169FA00D7998E /* Sparkle.framework in CopyFiles */,
 				48102C551D4169FA00D7998E /* Zip.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		485ECBDC1EA7BF250001F2B9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				485ECBDD1EA7BF3B0001F2B9 /* LOL Item Sets Launcher Helper.app in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +63,11 @@
 		48102C4E1D410F6200D7998E /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		48102C4F1D4110A200D7998E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		48102C501D4110A200D7998E /* Zip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Zip.framework; path = Carthage/Build/Mac/Zip.framework; sourceTree = "<group>"; };
+		485ECBCD1EA7BEA30001F2B9 /* LOL Item Sets Launcher Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LOL Item Sets Launcher Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		485ECBCF1EA7BEA30001F2B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		485ECBD31EA7BEA30001F2B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		485ECBD81EA7BEA30001F2B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		485ECBDF1EA7BF630001F2B9 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		48865FF61D422397000731FB /* LinkTextLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTextLabel.swift; sourceTree = "<group>"; };
 		48865FF81D4232C7000731FB /* sparkle.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sparkle.xml; sourceTree = "<group>"; };
 		48AC8EC51D462E3C00D4431C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -62,6 +81,14 @@
 			files = (
 				48102C521D4110A200D7998E /* Zip.framework in Frameworks */,
 				48102C511D4110A200D7998E /* Sparkle.framework in Frameworks */,
+				485ECBE01EA7BF630001F2B9 /* ServiceManagement.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		485ECBCA1EA7BEA30001F2B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +105,9 @@
 				48AC8EC51D462E3C00D4431C /* icon.png */,
 				48DE6F981D4A053300244C02 /* dsa_pub.pem */,
 				48102C381D40DF3800D7998E /* LOL Item Sets */,
+				485ECBCE1EA7BEA30001F2B9 /* LOL Item Sets Launcher Helper */,
 				48102C371D40DF3800D7998E /* Products */,
+				485ECBDE1EA7BF630001F2B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				48102C361D40DF3800D7998E /* LOL Item Sets.app */,
+				485ECBCD1EA7BEA30001F2B9 /* LOL Item Sets Launcher Helper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,6 +136,24 @@
 			path = "LOL Item Sets";
 			sourceTree = "<group>";
 		};
+		485ECBCE1EA7BEA30001F2B9 /* LOL Item Sets Launcher Helper */ = {
+			isa = PBXGroup;
+			children = (
+				485ECBCF1EA7BEA30001F2B9 /* AppDelegate.swift */,
+				485ECBD31EA7BEA30001F2B9 /* Assets.xcassets */,
+				485ECBD81EA7BEA30001F2B9 /* Info.plist */,
+			);
+			path = "LOL Item Sets Launcher Helper";
+			sourceTree = "<group>";
+		};
+		485ECBDE1EA7BF630001F2B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				485ECBDF1EA7BF630001F2B9 /* ServiceManagement.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,6 +165,7 @@
 				48102C331D40DF3800D7998E /* Frameworks */,
 				48102C341D40DF3800D7998E /* Resources */,
 				48102C531D4169EA00D7998E /* CopyFiles */,
+				485ECBDC1EA7BF250001F2B9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -127,19 +176,40 @@
 			productReference = 48102C361D40DF3800D7998E /* LOL Item Sets.app */;
 			productType = "com.apple.product-type.application";
 		};
+		485ECBCC1EA7BEA30001F2B9 /* LOL Item Sets Launcher Helper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 485ECBDB1EA7BEA30001F2B9 /* Build configuration list for PBXNativeTarget "LOL Item Sets Launcher Helper" */;
+			buildPhases = (
+				485ECBC91EA7BEA30001F2B9 /* Sources */,
+				485ECBCA1EA7BEA30001F2B9 /* Frameworks */,
+				485ECBCB1EA7BEA30001F2B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LOL Item Sets Launcher Helper";
+			productName = "LOL Item Sets Launcher Helper";
+			productReference = 485ECBCD1EA7BEA30001F2B9 /* LOL Item Sets Launcher Helper.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		48102C2E1D40DF3800D7998E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = melchor629;
 				TargetAttributes = {
 					48102C351D40DF3800D7998E = {
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 0800;
+					};
+					485ECBCC1EA7BEA30001F2B9 = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -157,6 +227,7 @@
 			projectRoot = "";
 			targets = (
 				48102C351D40DF3800D7998E /* LOL Item Sets */,
+				485ECBCC1EA7BEA30001F2B9 /* LOL Item Sets Launcher Helper */,
 			);
 		};
 /* End PBXProject section */
@@ -169,6 +240,14 @@
 				48DE6F991D4A053300244C02 /* dsa_pub.pem in Resources */,
 				48102C3E1D40DF3800D7998E /* Assets.xcassets in Resources */,
 				48102C411D40DF3800D7998E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		485ECBCB1EA7BEA30001F2B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				485ECBD41EA7BEA30001F2B9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +264,14 @@
 				48865FF71D422397000731FB /* LinkTextLabel.swift in Sources */,
 				48102C4B1D40EB0600D7998E /* WindowDelegate.swift in Sources */,
 				48102C3A1D40DF3800D7998E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		485ECBC91EA7BEA30001F2B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				485ECBD01EA7BEA30001F2B9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +412,41 @@
 			};
 			name = Release;
 		};
+		485ECBD91EA7BEA30001F2B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "LOL Item Sets Launcher Helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.melchor9000.LOL-Item-Sets-Launcher-Helper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		485ECBDA1EA7BEA30001F2B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "LOL Item Sets Launcher Helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.melchor9000.LOL-Item-Sets-Launcher-Helper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -345,6 +467,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		485ECBDB1EA7BEA30001F2B9 /* Build configuration list for PBXNativeTarget "LOL Item Sets Launcher Helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				485ECBD91EA7BEA30001F2B9 /* Debug */,
+				485ECBDA1EA7BEA30001F2B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

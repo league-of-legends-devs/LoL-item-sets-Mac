@@ -16,7 +16,8 @@ class Configuration {
         storage = UserDefaults.standard
         storage.register(defaults: [
             "installedVersion": "0.0.0",
-            "autoCheck": true
+            "autoCheck": true,
+            "openAtLogin": false
         ])
     }
     
@@ -123,6 +124,16 @@ class Configuration {
         
         set {
             storage.set(newValue.toString(), forKey: "lastInstalledVersion")
+        }
+    }
+
+    var openAtLogin: Bool {
+        get {
+            return storage.bool(forKey: "openAtLogin")
+        }
+
+        set {
+            storage.set(newValue, forKey: "openAtLogin")
         }
     }
     
