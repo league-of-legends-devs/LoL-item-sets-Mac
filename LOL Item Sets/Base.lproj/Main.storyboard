@@ -336,6 +336,17 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZLH-HQ-5vG">
+                                <rect key="frame" x="52" y="194" width="28" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="roundRect" bezelStyle="roundedRect" image="NSRefreshTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bdZ-7R-qHv">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="cellTitle"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onRefreshButtonClicked:" target="XfG-lQ-9wD" id="IPF-dj-7T2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Muw-T9-cpX" firstAttribute="leading" secondItem="ZR6-RT-dyg" secondAttribute="trailing" constant="8" id="3BE-62-gjf"/>
@@ -379,6 +390,7 @@
                         <outlet property="link_" destination="ru2-O5-Ivg" id="eSq-BL-RAz"/>
                         <outlet property="newsText" destination="cve-b0-b9K" id="ong-gC-QZi"/>
                         <outlet property="pathControl" destination="zvT-Ns-jgB" id="WEo-Bg-BTM"/>
+                        <outlet property="refreshButton" destination="ZLH-HQ-5vG" id="dBO-XN-Wy3"/>
                         <outlet property="spinIndicator" destination="xRg-dI-r43" id="4g4-KP-Rwv"/>
                     </connections>
                 </viewController>
@@ -387,4 +399,7 @@
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSRefreshTemplate" width="11" height="15"/>
+    </resources>
 </document>

@@ -20,6 +20,7 @@ class ViewController: NSViewController {
     @IBOutlet var newsText: NSTextField!
     @IBOutlet var generatedLabel: NSTextField!
     @IBOutlet var installedLabel: NSTextField!
+    @IBOutlet weak var refreshButton: NSButton!
     
     fileprivate var currentVersion: Configuration.Version?
     fileprivate var timer: Timer?
@@ -144,6 +145,7 @@ class ViewController: NSViewController {
             } else if(res!.statusCode / 100 >= 4) {
                 Util.showDialog("Error getting latest version", text: "The server responded with an error when we were "
                     + "getting the latest version", buttons: ["Ok"])
+                self.refreshButton.isHidden = false
             } else {
                 //Deserialize JSON
                 let obj = Util.fromJSON(data!)
@@ -160,6 +162,7 @@ class ViewController: NSViewController {
                         NSApplication.shared().dockTile.badgeLabel = "New Set"
                     } else if fetchedVersion == nil {
                         Util.showDialog("Error getting latest version", text: "The server responded with invalid information", buttons: ["Ok"])
+                        self.refreshButton.isHidden = false
                     }
                     
                     //Generation date
@@ -167,6 +170,7 @@ class ViewController: NSViewController {
                     self.generatedLabel.stringValue = "Generated \(genDate!.dateStr)"
                 } else {
                     Util.showDialog("Error getting latest version", text: "The server responded with an invalid data", buttons: ["Ok"])
+                    self.refreshButton.isHidden = false
                 }
             }
         }
@@ -179,6 +183,7 @@ class ViewController: NSViewController {
                 Util.showDialog("Cannot retrieve news", text: "There was an internal error while we were getting that news\n\(e!.localizedDescription)", buttons: ["Ok"])
             } else if(res!.statusCode / 100 >= 4) {
                 Util.showDialog("Cannot retrieve news", text: "The server responded with an error while we were getting the news", buttons: ["Ok"])
+                self.refreshButton.isHidden = false
             } else {
                 //Deserialize JSON
                 let obj = Util.fromJSON(data!)
@@ -360,6 +365,12 @@ class ViewController: NSViewController {
 
     @IBAction func autoCheckChanged(_ sender: NSButton) {
         Configuration.instance.autoCheck = sender.integerValue == 1 ? true : false
+    }
+
+    @IBAction func onRefreshButtonClicked(_ sender: NSButton) {
+        sender.isHidden = true
+        checkServerVersion()
+        getNews()
     }
 }
 
