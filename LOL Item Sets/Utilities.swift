@@ -53,7 +53,7 @@ class Util {
         let base = URL.init(fileURLWithPath: NSTemporaryDirectory() + "/XXXXXX.\(fileName)")
         var buffer = [Int8](repeating: 0, count: Int(PATH_MAX))
         (base as NSURL?)?.getFileSystemRepresentation(&buffer, maxLength: buffer.count)
-        let fd = mkstemps(&buffer, fileName.lengthOfBytes(using: String.Encoding.utf8) + 1)
+        let fd = mkstemps(&buffer, Int32(fileName.lengthOfBytes(using: String.Encoding.utf8)) + 1)
         if fd != -1 {
             return (FileHandle(fileDescriptor: fd, closeOnDealloc: true), URL(fileURLWithFileSystemRepresentation: buffer, isDirectory: false, relativeTo: nil))
         } else {
