@@ -20,3 +20,14 @@ Windows version here : https://github.com/Ilshidur/LoL-item-sets
 ## Contact
 
 Contact me at [ilshidur@lol-item-sets-generator.org](mailto:ilshidur@lol-item-sets-generator.org) or [ilshidur@gmail.com](mailto:ilshidur@gmail.com).
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+| [<img src="https://avatars2.githubusercontent.com/u/6564012?v=3" width="100px;"/><br /><sub>Nicolas COUTIN</sub>](https://www.nicolas-coutin.fr)<br />[💬](#question-Ilshidur "Answering Questions") [📖](https://github.com/Ilshidur/LoL-item-sets-Mac/commits?author=Ilshidur "Documentation") [👀](#review-Ilshidur "Reviewed Pull Requests") [🔧](#tool-Ilshidur "Tools") |
+| :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!

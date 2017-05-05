@@ -1,0 +1,23 @@
+{
+  "projectName": "LoL-item-sets-Mac",
+  "projectOwner": "Ilshidur",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "Ilshidur",
+      "name": "Nicolas COUTIN",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6564012?v=3",
+      "profile": "https://www.nicolas-coutin.fr",
+      "contributions": [
+        "question",
+        "doc",
+        "review",
+        "tool"
+      ]
+    }
+  ]
+}
