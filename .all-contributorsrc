@@ -16,7 +16,8 @@
         "question",
         "doc",
         "review",
-        "tool"
+        "tool",
+        "infra"
       ]
     },
     {
