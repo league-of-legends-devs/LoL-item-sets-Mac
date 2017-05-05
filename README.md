@@ -23,11 +23,32 @@ Contact me at [ilshidur@lol-item-sets-generator.org](mailto:ilshidur@lol-item-se
 
 ## Contributors
 
-Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
-
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 | [<img src="https://avatars2.githubusercontent.com/u/6564012?v=3" width="100px;"/><br /><sub>Nicolas COUTIN</sub>](https://www.nicolas-coutin.fr)<br />[💬](#question-Ilshidur "Answering Questions") [📖](https://github.com/Ilshidur/LoL-item-sets-Mac/commits?author=Ilshidur "Documentation") [👀](#review-Ilshidur "Reviewed Pull Requests") [🔧](#tool-Ilshidur "Tools") [🚇](#infra-Ilshidur "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars2.githubusercontent.com/u/1056963?v=3" width="100px;"/><br /><sub>Melchor Garau Madrigal</sub>](http://melchor9000.me)<br />[💬](#question-melchor629 "Answering Questions") [🐛](https://github.com/Ilshidur/LoL-item-sets-Mac/issues?q=author%3Amelchor629 "Bug reports") [💻](https://github.com/Ilshidur/LoL-item-sets-Mac/commits?author=melchor629 "Code") [🎨](#design-melchor629 "Design") [📖](https://github.com/Ilshidur/LoL-item-sets-Mac/commits?author=melchor629 "Documentation") |
 | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2017 **Nicolas COUTIN**
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
