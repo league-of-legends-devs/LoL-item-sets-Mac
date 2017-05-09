@@ -331,6 +331,7 @@ class ViewController: NSViewController {
                     }
 
                     NSApplication.shared().dockTile.showsApplicationBadge = false
+                    NSApplication.shared().dockTile.badgeLabel = nil
                     Configuration.instance.lastInstalledVersion = Configuration.instance.installedVersion
                     Configuration.instance.installedVersion = self.currentVersion!
                     self.installedPatch.stringValue = "Installed Patch: \(Configuration.instance.installedVersion.toString())"
