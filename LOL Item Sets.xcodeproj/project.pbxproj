@@ -475,6 +475,7 @@
 				485ECBDA1EA7BEA30001F2B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

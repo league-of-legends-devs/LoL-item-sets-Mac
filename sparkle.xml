@@ -5,7 +5,26 @@
         <link>https://raw.githubusercontent.com/ilshidur/LoL-item-sets-Mac/master/sparkle.xml</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
-        
+
+        <item>
+            <title>Version 0.5.3</title>
+            <description><![CDATA[
+                <ul>
+                <li>Added option to <b>open the app at login</b>. You can check it at the <i>LOL Item Stats</i> menu, near the Apple logo :)</li>
+                <li>Added a button to reload info when it fails</li>
+                <li>Added some warnings for some incorrect read permissions</li>
+                </ul>
+            ]]>
+            </description>
+            <pubDate>Tue, 9 May 2017 20:00:00 +0000</pubDate>
+            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.5.3/lol-item-sets-0.5.3.zip"
+            sparkle:version="8"
+            sparkle:shortVersionString="0.5.3"
+            sparkle:dsaSignature="MCwCFA1/JDKt3UD0WG3vnRin6y7yHUNYAhQHP2jkJ5j0U4UpQA/bXGHvieZhgA=="
+            length="5911935"
+            type="application/octet-stream" />
+        </item>
+
         <item>
             <title>Version 0.5.2</title>
             <description><![CDATA[
