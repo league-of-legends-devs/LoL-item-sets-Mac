@@ -1,8 +1,7 @@
 # LoL-item-sets for Mac
 
-> Download and automatically install the lastest LoL item sets from the website : [lol-item-sets-generator.org](https://lol-item-sets-generator.org).
-
-> Windows version here : https://github.com/Ilshidur/LoL-item-sets
+> Download and automatically install the lastest LoL item sets from the website : [lol-item-sets-generator.org](https://lol-item-sets-generator.org).<br/>
+Windows version here : https://github.com/Ilshidur/LoL-item-sets
 
 [![Slack Status](https://slack.lol-item-sets-generator.org/badge.svg)](https://slack.lol-item-sets-generator.org/)
 [![Twitter Follow](https://img.shields.io/twitter/follow/LoL_item_sets.svg?style=social&label=Follow)](https://twitter.com/Unreal_IRCd)
