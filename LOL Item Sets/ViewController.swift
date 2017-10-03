@@ -131,7 +131,7 @@ class ViewController: NSViewController {
         if Util.exists("\(path)/\(itemsPathBase)") && (!Util.canBeRead("\(path)/\(itemsPathBase)") || !Util.canBeWritten("\(path)/\(itemsPathBase)")) {
             let p = Util.showDialog(withOptions: "Ensure permissions", text: "Could not read or write LoL Champions item sets. Check for permissions", buttons: ["Ok", "See more"])
             if p == 2 {
-                NSWorkspace.shared().open(URL(string: "https://github.com/Ilshidur/LoL-item-sets-Mac/wiki/Fix-permissions-in-the-Item-Sets-folders-of-the-League-of-Legends-game")!)
+                NSWorkspace.shared().open(URL(string: "https://github.com/league-of-legends-devs/LoL-item-sets-Mac/wiki/Fix-permissions-in-the-Item-Sets-folders-of-the-League-of-Legends-game")!)
             }
         }
     }
@@ -345,10 +345,10 @@ class ViewController: NSViewController {
                         let p = Util.showDialog(withOptions: "Installing item sets had errors", text: "When installing the item sets, we found some" +
                             " errors, probably due to invalid permissions. Check the permissions on \"\(self.pathControl.url!.path)" +
                             "/\(self.itemsPathBase)\" and its subfolders, delete all items installed using the app's menu option " +
-                            "and reinstall the sets.\nSee https://github.com/Ilshidur/LoL-item-sets-Mac/wiki/Fix-permissions-in-" +
+                            "and reinstall the sets.\nSee https://github.com/league-of-legends-devs/LoL-item-sets-Mac/wiki/Fix-permissions-in-" +
                             "the-Item-Sets-folders-of-the-League-of-Legends-game for more help.", buttons: ["Ok", "See more"])
                         if p == 2 {
-                            NSWorkspace.shared().open(URL(string: "https://github.com/Ilshidur/LoL-item-sets-Mac/wiki/Fix-permissions-in-the-Item-Sets-folders-of-the-League-of-Legends-game")!)
+                            NSWorkspace.shared().open(URL(string: "https://github.com/league-of-legends-devs/LoL-item-sets-Mac/wiki/Fix-permissions-in-the-Item-Sets-folders-of-the-League-of-Legends-game")!)
                         }
                     }
                 } catch(let e) {
