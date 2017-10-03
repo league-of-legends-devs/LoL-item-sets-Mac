@@ -252,7 +252,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="URL" value="https://github.com/Ilshidur/LoL-item-sets-Mac"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="URL" value="https://github.com/league-of-legends-devs/LoL-item-sets-Mac"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Muw-T9-cpX" customClass="LinkTextLabel" customModule="LOL_Item_Sets" customModuleProvider="target">
@@ -267,7 +267,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="URL" value="https://github.com/Ilshidur/LoL-item-sets-Mac/blob/master/CHANGELOG.md"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="URL" value="https://github.com/league-of-legends-devs/LoL-item-sets-Mac/blob/master/CHANGELOG.md"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEl-Da-goN">
