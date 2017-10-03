@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
         <title>LoL items Sets Mac app</title>
-        <link>https://raw.githubusercontent.com/ilshidur/LoL-item-sets-Mac/master/sparkle.xml</link>
+        <link>https://raw.githubusercontent.com/league-of-legends-devs/LoL-item-sets-Mac/master/sparkle.xml</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
 
@@ -17,7 +17,7 @@
             ]]>
             </description>
             <pubDate>Tue, 9 May 2017 20:00:00 +0000</pubDate>
-            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.5.3/lol-item-sets-0.5.3.zip"
+            <enclosure url="https://github.com/league-of-legends-devs/LoL-item-sets-Mac/releases/download/0.5.3/lol-item-sets-0.5.3.zip"
             sparkle:version="8"
             sparkle:shortVersionString="0.5.3"
             sparkle:dsaSignature="MCwCFA1/JDKt3UD0WG3vnRin6y7yHUNYAhQHP2jkJ5j0U4UpQA/bXGHvieZhgA=="
@@ -37,7 +37,7 @@
             ]]>
             </description>
             <pubDate>Sun, 30 Oct 2016 12:00:00 +0000</pubDate>
-            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.5.2/lol-item-sets-0.5.2.zip"
+            <enclosure url="https://github.com/league-of-legends-devs/LoL-item-sets-Mac/releases/download/0.5.2/lol-item-sets-0.5.2.zip"
             sparkle:version="7"
             sparkle:shortVersionString="0.5.2"
             sparkle:dsaSignature="MCwCFBOY9z5IHlQNa5z9Douml2mIyrQHAhRoJwON2fDh0HDayvDGk3eK5uP4BQ=="
@@ -55,7 +55,7 @@
             ]]>
             </description>
             <pubDate>Fri, 28 Oct 2016 18:00:00 +0000</pubDate>
-            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.5.1/lol-item-sets-0.5.1.zip"
+            <enclosure url="https://github.com/league-of-legends-devs/LoL-item-sets-Mac/releases/download/0.5.1/lol-item-sets-0.5.1.zip"
             sparkle:version="6"
             sparkle:shortVersionString="0.5.1"
             sparkle:dsaSignature="MC0CFE2mTyNkjXrh8Vg34caXcCCldp8/AhUAppFXc6G50vL6PuqG697tqzNyZT0="
@@ -75,7 +75,7 @@
             ]]>
             </description>
             <pubDate>Fri, 26 Jul 2016 18:00:00 +0000</pubDate>
-            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.5/lol-item-sets-0.5.0.zip"
+            <enclosure url="https://github.com/league-of-legends-devs/LoL-item-sets-Mac/releases/download/0.5/lol-item-sets-0.5.0.zip"
             sparkle:version="5"
             sparkle:shortVersionString="0.5"
             sparkle:dsaSignature="MCwCFFRsCfpLZUI9uNKZc0sSw6AO638oAhQzGNXMeLU5VUJYl2uhe2jPSZ0amw=="
@@ -94,7 +94,7 @@
             ]]>
             </description>
             <pubDate>Mon, 27 Jul 2016 14:00:00 +0000</pubDate>
-            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.4/lol-item-sets-0.4.0.zip"
+            <enclosure url="https://github.com/league-of-legends-devs/LoL-item-sets-Mac/releases/download/0.4/lol-item-sets-0.4.0.zip"
             sparkle:version="4"
             sparkle:shortVersionString="0.4"
             sparkle:dsaSignature="MCwCFCQeQBMqGvYHWSoDbqe3HvnWGeo7AhRd34i8UmdPfX7mmQdH4IMhfvfQlA=="
@@ -113,7 +113,7 @@
             ]]>
             </description>
             <pubDate>Mon, 25 Jul 2016 20:00:00 +0000</pubDate>
-            <enclosure url="https://github.com/ilshidur/LoL-item-sets-Mac/releases/download/0.3/lol-item-sets-0.3.0.zip"
+            <enclosure url="https://github.com/league-of-legends-devs/LoL-item-sets-Mac/releases/download/0.3/lol-item-sets-0.3.0.zip"
             sparkle:version="3"
             sparkle:shortVersionString="0.3"
             length="2962393"
