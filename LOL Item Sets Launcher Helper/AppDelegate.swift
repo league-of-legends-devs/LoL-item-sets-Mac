@@ -3,7 +3,7 @@
 //  LOL Item Sets Launcher Helper
 //
 //  Created by Melchor Garau Madrigal on 19/4/17.
-//  Copyright © 2017 melchor629. All rights reserved.
+//  Copyright © 2017-2018 melchor629. All rights reserved.
 //
 
 import Cocoa
